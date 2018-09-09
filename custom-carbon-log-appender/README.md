@@ -40,7 +40,7 @@ Follow below steps to use this log appender.
 4. Restart the server. 
 
 ### Testing the project.
-We can add above test log entry to any suitable module and patch it to see the output. I've changed the [ReadOnlyLDAPUserStoreManager](https://github.com/wso2/carbon-kernel/blob/v4.4.3/core/org.wso2.carbon.user.core/src/main/java/org/wso2/carbon/user/core/ldap/ReadOnlyLDAPUserStoreManager.java) file accordingly. 
+We can add above test log entry to any suitable module and patch it to see the output. I added above test log to the constructor of [ReadOnlyLDAPUserStoreManager](https://github.com/wso2/carbon-kernel/blob/v4.4.3/core/org.wso2.carbon.user.core/src/main/java/org/wso2/carbon/user/core/ldap/ReadOnlyLDAPUserStoreManager.java#L131) file accordingly. 
 
 Once the server is restarted, you can see the modified logs are appending into **<IS_HOME>/repository/logs/wso2carbon.log** file. Modified log for above log entry is as follows.
 
