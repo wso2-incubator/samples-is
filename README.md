@@ -9,7 +9,8 @@ Please follow below steps to add new projects to the repository.
 3. Add a complete readme file inside the project folder. Please use the below template.
 
 ### README template
-  ```
+
+```
   ## <Project name>.
   ### Introduction / Use case.
   Please explain what your sample does and the use case. Use external links, images and diagrams if possible.
@@ -24,5 +25,6 @@ Please follow below steps to add new projects to the repository.
   Please provide steps for testing the sample. Provide example inputs and outputs as well.
   
  ```
- ### Existing samples.
+
+### Existing samples.
  - [Custom Carbon Log Appender](https://github.com/vihanga-liyanage/samples-is-1/tree/master/custom-carbon-log-appender) - A carbon log appender that can intercept and modify logs of WSO2 Identity Server.
