@@ -4,6 +4,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.osgi.service.component.ComponentContext;
 import org.wso2.carbon.user.core.service.RealmService;
+import org.wso2.custom.claim.PermissionClaimHandler;
 
 /**
  * @scr.component name="custom.permission.claim.handler"
@@ -19,11 +20,13 @@ public class PermissionClaimHandlingComponent {
 
     protected void activate(ComponentContext ctxt) {
 
-        try {
-            log.info("Carbon Custom Claim Handler activated successfully.");
-        } catch (Exception e) {
-            log.error("Failed to activate Carbon Custom Claim Handler ", e);
-        }
+        PermissionClaimHandler permissionClaimHandler = new
+                PermissionClaimHandler();
+        // Register the custom listener as an OSGI service.
+        ctxt.getBundleContext().registerService(
+                PermissionClaimHandler.class.getName(), permissionClaimHandler, null);
+
+        log.info("Carbon Custom Claim Handler activated successfully.");
     }
 
     protected void deactivate(ComponentContext ctxt) {
@@ -53,5 +56,4 @@ public class PermissionClaimHandlingComponent {
 
         return PermissionClaimHandlingComponent.realmService;
     }
-
 }

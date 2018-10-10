@@ -37,8 +37,10 @@ public class PermissionClaimHandler extends DefaultClaimHandler  {
                                                    boolean isFederatedClaims) throws FrameworkException {
 
         String userName = stepConfig.getAuthenticatedUser().getUserName();
-        Map<String, String> requestedClaimMappings = context.getSequenceConfig().getApplicationConfig().getRequestedClaimMappings();
-        Map<String, String> claimMappings = super.handleClaimMappings(stepConfig, context, remoteClaims, isFederatedClaims);
+        Map<String, String> requestedClaimMappings = context.getSequenceConfig().getApplicationConfig().
+                getRequestedClaimMappings();
+        Map<String, String> claimMappings = super.handleClaimMappings(stepConfig, context, remoteClaims,
+                isFederatedClaims);
         try {
             AuthorizationManager authorizationManager =  PermissionClaimHandlingComponent.getRealmService()
                                                             .getBootstrapRealm().getAuthorizationManager();
@@ -59,5 +61,4 @@ public class PermissionClaimHandler extends DefaultClaimHandler  {
         }
         return claimMappings;
     }
-
 }
