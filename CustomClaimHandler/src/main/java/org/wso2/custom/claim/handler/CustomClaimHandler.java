@@ -4,21 +4,18 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.wso2.carbon.identity.application.authentication.framework.config.model.StepConfig;
 import org.wso2.carbon.identity.application.authentication.framework.context.AuthenticationContext;
-import org.wso2.carbon.identity.application.authentication.framework.handler.claims.impl.DefaultClaimHandler;
 import org.wso2.carbon.identity.application.authentication.framework.exception.FrameworkException;
-import org.wso2.carbon.identity.application.authentication.framework.util.FrameworkConstants;
+import org.wso2.carbon.identity.application.authentication.framework.handler.claims.impl.DefaultClaimHandler;
 
 import java.util.HashMap;
 import java.util.Map;
 
-
 public class CustomClaimHandler extends DefaultClaimHandler {
 
-    private static Log log = LogFactory.getLog(CustomClaimHandler.class);
     private static volatile CustomClaimHandler instance;
 
-
     public static CustomClaimHandler getInstance() {
+
         if (instance == null) {
             synchronized (CustomClaimHandler.class) {
                 if (instance == null) {
@@ -37,10 +34,10 @@ public class CustomClaimHandler extends DefaultClaimHandler {
         String authenticatedUser = null;
 
         if (stepConfig != null) {
-            //calling from StepBasedSequenceHandler
+            // Calling from StepBasedSequenceHandler
             authenticatedUser = stepConfig.getAuthenticatedUser().getUserName();
         } else {
-            //calling from RequestPathBasedSequenceHandler
+            // Calling from RequestPathBasedSequenceHandler
             authenticatedUser = context.getSequenceConfig().getAuthenticatedUser().getUserName();
         }
 
@@ -58,8 +55,9 @@ public class CustomClaimHandler extends DefaultClaimHandler {
      * @return
      */
     private Map<String, String> handleExternalClaims(String authenticatedUser) throws FrameworkException {
+
         Map<String, String> externalClaims = new HashMap<String, String>();
-        externalClaims.put("keplerNumber","E90836W19881010");
+        externalClaims.put("keplerNumber", "E90836W19881010");
         return externalClaims;
     }
 }

@@ -3,6 +3,7 @@ package org.wso2.custom.claim.handler.internal;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.osgi.service.component.ComponentContext;
+import org.wso2.custom.claim.handler.CustomClaimHandler;
 
 /**
  * @scr.component name="custom.permission.claim.handler"
@@ -14,11 +15,12 @@ public class CustomClaimHandlingComponent {
 
     protected void activate(ComponentContext ctxt) {
 
-        try {
-            log.info("Carbon Custom Claim Handler activated successfully.");
-        } catch (Exception e) {
-            log.error("Failed to activate Carbon Custom Claim Handler ", e);
-        }
+        CustomClaimHandler customClaimHandler = new
+                CustomClaimHandler();
+        // Register the custom listener as an OSGI service.
+        ctxt.getBundleContext().registerService(
+                CustomClaimHandler.class.getName(), customClaimHandler, null);
+        log.info("Carbon Custom Claim Handler activated successfully.");
     }
 
     protected void deactivate(ComponentContext ctxt) {
@@ -27,5 +29,4 @@ public class CustomClaimHandlingComponent {
             log.debug("Carbon Custom Claim Handler is deactivated ");
         }
     }
-
 }

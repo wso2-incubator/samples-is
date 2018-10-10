@@ -52,9 +52,9 @@
                             org.wso2.custom.claim.*,
                         </Export-Package>
                         <Import-Package>
-                            org.osgi.framework; version="${osgi.framework.imp.pkg.version.range}",
+                            org.osgi.framework; version="[1.7.0, 2.0.0)",
                             org.osgi.service.component;
-                            version="${osgi.service.component.imp.pkg.version.range}",
+                            version="[1.2.0, 2.0.0)",
 
                             org.wso2.carbon.identity.application.authentication.framework.*
                             *;resolution:=optional
@@ -113,24 +113,4 @@
             </releases>
         </repository>
     </repositories>
-    <properties>
-
-    <osgi.framework.imp.pkg.version.range>[1.7.0, 2.0.0)</osgi.framework.imp.pkg.version.range>
-    <osgi.service.component.imp.pkg.version.range>[1.2.0, 2.0.0)</osgi.service.component.imp.pkg.version.range>
-    <commons-lang.wso2.osgi.version.range>[2.6.0,3.0.0)</commons-lang.wso2.osgi.version.range>
-    <commons-logging.osgi.version.range>[1.2,2.0)</commons-logging.osgi.version.range>
-
-    <!--Carbon Identity Framework Version-->
-    <carbon.identity.framework.version>5.7.0</carbon.identity.framework.version>
-    <carbon.identity.framework.imp.pkg.version.range>[5.7.0, 6.0.0)
-    </carbon.identity.framework.imp.pkg.version.range>
-
-
-    <!--Maven Plugin Version-->
-    <carbon.p2.plugin.version>1.5.3</carbon.p2.plugin.version>
-    <maven.compiler.plugin.version>2.3.1</maven.compiler.plugin.version>
-    <maven.scr.plugin.version>1.7.2</maven.scr.plugin.version>
-    <maven.bundle.plugin.version>2.4.0</maven.bundle.plugin.version>
-    </properties>
-
 </project>
