@@ -15,10 +15,11 @@ public class CustomPasswordGenerator implements RandomPasswordGenerator {
 
     public char[] generatePassword() {
 
-        // Pick from some letters that won't be easily mistaken for each other.
-        // So, for example, omit o O and 0, 1 l and L.
-        // This will generate a random password which satisfy the following regex.
-        // ^((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%&*])).{0,100}$}
+        /* Pick from some letters that won't be easily mistaken for each other. So, for example, omit o O and 0, 1 l
+        and L.
+        This will generate a random password which satisfy the following regex.
+        ^((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%&*])).{0,100}$}
+        */
         String characters = "23456789abcdefghjkmnpqrstuvwxyzABCDEFGHJKMNPQRSTUVWXYZ!@#$%&*";
         String digits = "23456789";
         String lowercaseLetters = "abcdefghjkmnpqrstuvwxyz";

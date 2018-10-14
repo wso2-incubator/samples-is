@@ -25,9 +25,9 @@ public class CustomPasswordGeneratorDSComponent {
     }
 
     protected void deactivate(ComponentContext context) {
+
         if (log.isDebugEnabled()) {
             log.debug("CustomPasswordGeneratorDSComponent is deactivated ");
         }
     }
-
 }

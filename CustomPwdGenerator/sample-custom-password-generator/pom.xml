@@ -15,18 +15,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.osgi</groupId>
-            <artifactId>org.osgi.core</artifactId>
-            <version>4.2.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.osgi</groupId>
-            <artifactId>org.osgi.compendium</artifactId>
-            <version>4.2.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
             <groupId>org.wso2.carbon.identity.framework</groupId>
             <artifactId>org.wso2.carbon.identity.mgt</artifactId>
             <version>5.11.148</version>
@@ -45,7 +33,6 @@
             </releases>
         </repository>
     </repositories>
-
 
     <build>
         <plugins>
@@ -81,7 +68,7 @@
                         <Import-Package>
                             org.apache.commons.logging.*;
                             version="1.0.4",
-
+                            org.osgi.service.component
                         </Import-Package>
                         <DynamicImport-Package>*</DynamicImport-Package>
                     </instructions>
@@ -89,5 +76,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
