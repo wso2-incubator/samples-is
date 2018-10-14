@@ -1,8 +1,15 @@
 # CustomPermissionClaimHandler
-With this custom claim handler, we can get custom permissions along with the id token.
+### Introduction / Use case.
+
+With this custom claim handler, we can get custom permissions along with the id token. Refer \[1] more more details.
+
+### Applicable product versions.
+Tested with IS-5.3.0
 
 Note:- In order to retrive application's role's permission through id token, you have to enable the property GetAllRolesOfUserEnabled in user-mgt.xml file. By default it is disabled.
-	            
+
+### How to use.
+            
 1. Stop the server if it is already running.
 
 2. Build the project and copy the JAR file org.wso2.permission.claim.handler-1.0.jar to the <IS_HOME>/repository/components/dropins directory.
@@ -10,6 +17,8 @@ Note:- In order to retrive application's role's permission through id token, you
 3. Change the <ClaimHandler> property of application-authentication.xml file located inside <IS_HOME>/repository/conf/identity directory, with the custom hanlder's fully qualified name (for this example org.wso2.custom.claim.PermissionClaimHandler).
 
 4. Check the above Note and Start the server
+
+### Testing the project.
 
 5. Create new Local Claim to represent permissions (In this sample I have created a local claim with claim uri http://wso2.org/claims/permission) (If you are using diffrent claim uri then you have to change the value of the constant PERMISSION_CLAIM in the code).
 
@@ -45,3 +54,5 @@ Parse the retrieved id token then sample JSON would be as follows :-
   "nonce": "qwdqdq",
   "iat": 1532210945
 }
+
+\[1] https://medium.com/@nilasini/retrieve-service-provider-wise-custom-permissions-as-a-claim-in-id-token-785a94ff5793
