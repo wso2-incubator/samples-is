@@ -1,6 +1,6 @@
 ## CustomClaimHandler
 ### Introduction / Use case.
-This custom claim handler will add some external claims
+This custom claim handler will add some external claims. Refer \[1] for more details.
 
 ### Applicable product versions.
 Tested with IS-5.3.0
@@ -19,12 +19,11 @@ Tested with IS-5.3.0
 8) Don’t forget to add the oidc claims to the registry.
 9) Add a service provider by selecting the requested claim as "http://test.wso2.org/claims/keplerNumber"
 10) Get an id token for this service provider
-11) Pasre the id token using \[1], now you could able to see the claim keplerNumber as a json attribute.
+11) Pasre the id token using \[2], now you could able to see the claim keplerNumber as a json attribute.
 
-Refer \[2] understand the implementations details.
 
-\[1] https://jwt.io/
+\[1] https://medium.com/@nilasini/sso-within-two-sps-while-using-a-custom-authenticator-and-a-custom-claim-handler-wso2is-5-3-0-bd473361ddf6
+\[2] https://jwt.io/
 
-\[2] https://medium.com/@nilasini/sso-within-two-sps-while-using-a-custom-authenticator-and-a-custom-claim-handler-wso2is-5-3-0-bd473361ddf6
 
 
