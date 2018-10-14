@@ -15,26 +15,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.osgi</groupId>
-            <artifactId>org.osgi.core</artifactId>
-            <version>4.2.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.osgi</groupId>
-            <artifactId>org.osgi.compendium</artifactId>
-            <version>4.2.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.wso2.carbon</groupId>
-            <artifactId>org.wso2.carbon.user.core</artifactId>
-            <version>4.4.3</version>
-        </dependency>
-        <dependency>
-            <groupId>org.wso2.carbon.identity</groupId>
-            <artifactId>org.wso2.carbon.identity.mgt</artifactId>
-            <version>5.0.7</version>
+            <groupId>commons-lang.wso2</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.6.0.wso2v1</version>
         </dependency>
         <dependency>
             <groupId>org.wso2.carbon.identity</groupId>
@@ -55,7 +38,6 @@
             </releases>
         </repository>
     </repositories>
-
 
     <build>
         <plugins>
@@ -91,9 +73,13 @@
                         <Import-Package>
                             org.apache.commons.logging.*;
                             version="1.0.4",
-
+                            org.apache.commons.lang.*;
+                            version="[2.6.0,3.0.0)",
+                            org.wso2.carbon.user.core.*;
+                            version="(4.0.0,4.5.0)",
+                            org.osgi.service.component.*,
+                            org.osgi.framework
                         </Import-Package>
-                        <DynamicImport-Package>*</DynamicImport-Package>
                     </instructions>
                 </configuration>
             </plugin>

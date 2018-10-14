@@ -9,7 +9,7 @@ import java.security.SecureRandom;
 import java.util.Map;
 import java.util.Random;
 
-public class CustomUserOperationEventListener extends AbstractUserOperationEventListener {
+public class RandomPasswordUserOperationEventListener extends AbstractUserOperationEventListener {
 
     private static final int PASSWORD_LENGTH = 10;
     private static final Random RANDOM = new SecureRandom();
@@ -17,13 +17,15 @@ public class CustomUserOperationEventListener extends AbstractUserOperationEvent
     @Override
     public int getExecutionOrderId() {
 
-        //This listener should execute before the IdentityMgtEventListener
-        //Hence the number should be < 95 (Execution order ID of IdentityMgtEventListener)
+        /* This listener should execute before the IdentityMgtEventListener
+        Hence the number should be < 95 (Execution order ID of IdentityMgtEventListener)
+         */
         return 94;
     }
 
     @Override
-    public boolean doPreAddUser(String userName, Object credential, String[] roleList, Map<String, String> claims, String profile, UserStoreManager userStoreManager) throws UserStoreException {
+    public boolean doPreAddUser(String userName, Object credential, String[] roleList, Map<String, String> claims,
+                                String profile, UserStoreManager userStoreManager) throws UserStoreException {
 
         if (StringUtils.isNotBlank(claims.get("http://wso2.org/claims/identity/askPassword")) && credential
                 instanceof StringBuffer) {
@@ -62,5 +64,4 @@ public class CustomUserOperationEventListener extends AbstractUserOperationEvent
         }
         return true;
     }
-
 }
