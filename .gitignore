@@ -29,3 +29,4 @@ hs_err_pid*
 # Target folders
 custom-carbon-log-appender/target/
 custom-claim-handler/target/
+custom-permission-claim-handler/target/
