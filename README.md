@@ -30,3 +30,4 @@ Please follow below steps to add new projects to the repository.
  - [Custom Carbon Log Appender](custom-carbon-log-appender/) - A carbon log appender that can intercept and modify logs of WSO2 Identity Server.
  - [Custom Claim Handler](custom-claim-handler/) - A custom claim handler that is capable of adding some external claims.
  - [Custom Permission Claim Handler](custom-permission-claim-handler/) - A custom claim handler that is capable of getting custom permissions along with the id token.
+ - [Custom Password Generator](custom-password-generator/) - Ability to generate random passwords that satisfies your own password policies.
