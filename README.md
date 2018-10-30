@@ -27,4 +27,5 @@ Please follow below steps to add new projects to the repository.
  ```
 
 ### Existing samples.
- - [Custom Carbon Log Appender](https://github.com/vihanga-liyanage/samples-is-1/tree/master/custom-carbon-log-appender) - A carbon log appender that can intercept and modify logs of WSO2 Identity Server.
+ - [Custom Carbon Log Appender](custom-carbon-log-appender/) - A carbon log appender that can intercept and modify logs of WSO2 Identity Server.
+ - [Custom Claim Handler](custom-claim-handler/) - A custom claim handler that is capable of adding some external claims.

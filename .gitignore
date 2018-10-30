@@ -26,5 +26,6 @@ hs_err_pid*
 .idea/
 *.iml
 
-# Target folder
+# Target folders
 custom-carbon-log-appender/target/
+custom-claim-handler/target/
