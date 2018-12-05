@@ -27,4 +27,8 @@ Please follow below steps to add new projects to the repository.
  ```
 
 ### Existing samples.
- - [Custom Carbon Log Appender](https://github.com/vihanga-liyanage/samples-is-1/tree/master/custom-carbon-log-appender) - A carbon log appender that can intercept and modify logs of WSO2 Identity Server.
+ - [Custom Carbon Log Appender](custom-carbon-log-appender/) by [Vihanga Liyanage](https://github.com/vihanga-liyanage) - A carbon log appender that can intercept and modify logs of WSO2 Identity Server.
+ - [Custom Claim Handler](custom-claim-handler/) by [Nilasini Thirunavukkarasu](https://github.com/nilasini) - A custom claim handler that is capable of adding some external claims.
+ - [Custom Permission Claim Handler](custom-permission-claim-handler/) by [Nilasini Thirunavukkarasu](https://github.com/nilasini) - A custom claim handler that is capable of getting custom permissions along with the id token.
+ - [Custom Password Generator](custom-password-generator/) by [Nilasini Thirunavukkarasu](https://github.com/nilasini) - Ability to generate random passwords that satisfies your own password policies.
+ - [Custom User Operation Event Listener](custom-user-operation-event-listener/) by [Nilasini Thirunavukkarasu](https://github.com/nilasini) - Ability to generate random passwords that satisfies your own password policies.
