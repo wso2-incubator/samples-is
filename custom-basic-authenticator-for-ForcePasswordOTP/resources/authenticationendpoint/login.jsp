@@ -1,5 +1,5 @@
 <%--
-  ~ Copyright (c) 2014, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+  ~ Copyright (c) 2018, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
   ~
   ~ WSO2 Inc. licenses this file to you under the Apache License,
   ~ Version 2.0 (the "License"); you may not use this file except
@@ -31,7 +31,8 @@
     private static final String BASIC_AUTHENTICATOR = "BasicAuthenticator";
     private static final String BACK_CHANNEL_BASIC_AUTHENTICATOR = "BackchannelBasicAuthenticator";
     private static final String OPEN_ID_AUTHENTICATOR = "OpenIDAuthenticator";
-%><fmt:bundle basename="org.wso2.carbon.identity.application.authentication.endpoint.i18n.Resources">
+%>
+<fmt:bundle basename="org.wso2.carbon.identity.application.authentication.endpoint.i18n.Resources">
 
     <%
         request.getSession().invalidate();
@@ -66,7 +67,6 @@
                 localAuthenticatorNames = Arrays.asList(authList.split(","));
             }
         }
-
 
     %>
     <%
@@ -104,7 +104,9 @@
             function checkSessionKey() {
                         $.ajax({
                             type: "GET",
-                            url: "<%=loginContextURL%>?sessionDataKey=" + getParameterByName("sessionDataKey") + "&relyingParty=" + getParameterByName("relyingParty") + "&tenantDomain=" + getParameterByName("tenantDomain"),
+                            url: "<%=loginContextURL%>?sessionDataKey=" + getParameterByName("sessionDataKey") +
+                                "&relyingParty=" + getParameterByName("relyingParty") + "&tenantDomain=" +
+                                getParameterByName("tenantDomain"),
                             success: function (data) {
                                 if (data && data.status == 'redirect' && data.redirectUrl && data.redirectUrl.length > 0) {
                                     window.location.href = data.redirectUrl;

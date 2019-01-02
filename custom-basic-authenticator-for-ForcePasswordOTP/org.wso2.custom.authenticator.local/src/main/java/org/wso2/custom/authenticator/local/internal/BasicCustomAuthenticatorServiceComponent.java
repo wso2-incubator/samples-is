@@ -24,7 +24,6 @@ import org.wso2.custom.authenticator.local.BasicCustomAuthenticator;
 import org.wso2.carbon.identity.application.authentication.framework.ApplicationAuthenticator;
 import org.wso2.carbon.user.core.service.RealmService;
 
-
 /**
  * @scr.component name="org.wso2.custom.authenticator.local.basic.component" immediate="true"
  * @scr.reference name="realm.service"
