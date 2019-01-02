@@ -15,6 +15,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
 package org.wso2.custom.authenticator.local;
 
 import org.apache.commons.logging.Log;
@@ -29,8 +30,6 @@ import org.wso2.carbon.identity.application.authentication.framework.exception.I
 import org.wso2.carbon.identity.application.authentication.framework.exception.LogoutFailedException;
 import org.wso2.carbon.identity.application.authentication.framework.model.AuthenticatedUser;
 import org.wso2.carbon.identity.application.authentication.framework.util.FrameworkUtils;
-import org.wso2.custom.authenticator.local.internal.BasicCustomAuthenticatorServiceComponent;
-import org.wso2.custom.authenticator.local.BasicCustomAuthenticatorConstants;
 import org.wso2.carbon.identity.application.common.model.User;
 import org.wso2.carbon.identity.base.IdentityRuntimeException;
 import org.wso2.carbon.identity.core.model.IdentityErrorMsgContext;
@@ -43,13 +42,14 @@ import org.wso2.carbon.user.core.UserStoreException;
 import org.wso2.carbon.user.core.UserStoreManager;
 import org.wso2.carbon.user.core.util.UserCoreUtil;
 import org.wso2.carbon.utils.multitenancy.MultitenantUtils;
+import org.wso2.custom.authenticator.local.internal.BasicCustomAuthenticatorServiceComponent;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Username Password based custom Authenticator
@@ -60,7 +60,7 @@ public class BasicCustomAuthenticator extends AbstractApplicationAuthenticator
     private static final long serialVersionUID = 4345354156955223654L;
     private static final String PASSWORD_PROPERTY = "PASSWORD_PROPERTY";
     private static final String PASSWORD_RESET_ENDPOINT = "accountrecoveryendpoint/confirmrecovery.do?";
-    private static final String CUSTOM_PASSWORD_RESET_ENDPOINT = "accountrecoveryendpoint/custom-password-reset.jsp?";
+    private static final String CUSTOM_PASSWORD_RESET_ENDPOINT = "accountrecoveryendpoint/custom-password-reset.jsp";
     private static final Log log = LogFactory.getLog(BasicCustomAuthenticator.class);
     private static String RE_CAPTCHA_USER_DOMAIN = "user-domain-recaptcha";
 
@@ -103,9 +103,8 @@ public class BasicCustomAuthenticator extends AbstractApplicationAuthenticator
     }
 
     @Override
-    protected void initiateAuthenticationRequest(HttpServletRequest request,
-                                                 HttpServletResponse response, AuthenticationContext context)
-            throws AuthenticationFailedException {
+    protected void initiateAuthenticationRequest(HttpServletRequest request, HttpServletResponse response,
+                                                 AuthenticationContext context) throws AuthenticationFailedException {
 
         Map<String, String> parameterMap = getAuthenticatorConfig().getParameterMap();
         String showAuthFailureReason = null;
@@ -159,7 +158,8 @@ public class BasicCustomAuthenticator extends AbstractApplicationAuthenticator
                             ":" + BasicCustomAuthenticatorConstants.LOCAL + retryParam;
                     response.sendRedirect(redirectURL);
 
-                } else if (errorCode.equals(IdentityCoreConstants.ADMIN_FORCED_USER_PASSWORD_RESET_VIA_EMAIL_LINK_ERROR_CODE)) {
+                } else if (errorCode.equals(
+                        IdentityCoreConstants.ADMIN_FORCED_USER_PASSWORD_RESET_VIA_EMAIL_LINK_ERROR_CODE)) {
                     retryParam = "&authFailure=true&authFailureMsg=password.reset.pending";
                     String redirectURL = response.encodeRedirectURL(loginPage + ("?" + queryParams)) +
                             BasicCustomAuthenticatorConstants.FAILED_USERNAME + URLEncoder.encode(request.getParameter(
@@ -169,12 +169,13 @@ public class BasicCustomAuthenticator extends AbstractApplicationAuthenticator
                             BasicCustomAuthenticatorConstants.LOCAL + retryParam;
                     response.sendRedirect(redirectURL);
 
-                } else if (errorCode.equals(IdentityCoreConstants.ADMIN_FORCED_USER_PASSWORD_RESET_VIA_OTP_ERROR_CODE)) {
+                } else if (errorCode.equals(
+                        IdentityCoreConstants.ADMIN_FORCED_USER_PASSWORD_RESET_VIA_OTP_ERROR_CODE)) {
                     String username = request.getParameter(BasicCustomAuthenticatorConstants.USER_NAME);
                     String redirectURL;
                     if (BasicCustomAuthenticatorConstants.ENABLE_PASSWORD_RESET_OTP_CONF) {
-                        redirectURL = response.encodeRedirectURL((CUSTOM_PASSWORD_RESET_ENDPOINT + queryParams)) + "&" +
-                                BasicCustomAuthenticatorConstants.USER_NAME + "=" + URLEncoder.encode(username) +
+                        redirectURL = response.encodeRedirectURL((CUSTOM_PASSWORD_RESET_ENDPOINT + queryParams)) +
+                                "&" + BasicCustomAuthenticatorConstants.USER_NAME + "=" + URLEncoder.encode(username) +
                                 "&confirmation=" + password;
                     } else {
                         redirectURL = response.encodeRedirectURL((PASSWORD_RESET_ENDPOINT + queryParams)) + "&" +
@@ -211,16 +212,16 @@ public class BasicCustomAuthenticator extends AbstractApplicationAuthenticator
                             redirectURL = response.encodeRedirectURL(redirectURL + ("?" + queryParams)) +
                                     BasicCustomAuthenticatorConstants.ERROR_CODE + errorCode +
                                     BasicCustomAuthenticatorConstants.FAILED_USERNAME +
-                                    URLEncoder
-                                            .encode(request.getParameter(BasicCustomAuthenticatorConstants.USER_NAME)
-                                                    , BasicCustomAuthenticatorConstants.UTF_8) +
-                                    "&remainingAttempts=0";
+                                    URLEncoder.encode(
+                                            request.getParameter(BasicCustomAuthenticatorConstants.USER_NAME),
+                                            BasicCustomAuthenticatorConstants.UTF_8) + "&remainingAttempts=0";
                         } else {
                             redirectURL = response.encodeRedirectURL(redirectURL + ("?" + queryParams)) +
                                     BasicCustomAuthenticatorConstants.ERROR_CODE + errorCode +
                                     BasicCustomAuthenticatorConstants.FAILED_USERNAME +
-                                    URLEncoder.encode(request.getParameter(BasicCustomAuthenticatorConstants.USER_NAME),
-                                                    BasicCustomAuthenticatorConstants.UTF_8);
+                                    URLEncoder.encode(request.getParameter(
+                                            BasicCustomAuthenticatorConstants.USER_NAME),
+                                            BasicCustomAuthenticatorConstants.UTF_8);
                         }
                         response.sendRedirect(redirectURL);
 
@@ -240,11 +241,13 @@ public class BasicCustomAuthenticator extends AbstractApplicationAuthenticator
                         response.sendRedirect(response.encodeRedirectURL(loginPage + ("?" + queryParams))
                                 + BasicCustomAuthenticatorConstants.AUTHENTICATORS + getName() + ":" +
                                 BasicCustomAuthenticatorConstants.LOCAL + retryParam);
-                    } else if (errorCode.equals(IdentityCoreConstants.ADMIN_FORCED_USER_PASSWORD_RESET_VIA_OTP_MISMATCHED_ERROR_CODE)) {
+                    } else if (errorCode.equals(
+                            IdentityCoreConstants.ADMIN_FORCED_USER_PASSWORD_RESET_VIA_OTP_MISMATCHED_ERROR_CODE)) {
                         retryParam = "&authFailure=true&authFailureMsg=login.fail.message";
                         String redirectURL = response.encodeRedirectURL(loginPage + ("?" + queryParams)) +
-                                BasicCustomAuthenticatorConstants.FAILED_USERNAME + URLEncoder.encode(request.getParameter(
-                                BasicCustomAuthenticatorConstants.USER_NAME), BasicCustomAuthenticatorConstants.UTF_8) +
+                                BasicCustomAuthenticatorConstants.FAILED_USERNAME +
+                                URLEncoder.encode(request.getParameter(BasicCustomAuthenticatorConstants.USER_NAME),
+                                        BasicCustomAuthenticatorConstants.UTF_8) +
                                 BasicCustomAuthenticatorConstants.ERROR_CODE + errorCode
                                 + BasicCustomAuthenticatorConstants.AUTHENTICATORS + getName() + ":" +
                                 BasicCustomAuthenticatorConstants.LOCAL + retryParam;
@@ -265,7 +268,6 @@ public class BasicCustomAuthenticator extends AbstractApplicationAuthenticator
                     response.sendRedirect(response.encodeRedirectURL(loginPage + ("?" + queryParams))
                             + BasicCustomAuthenticatorConstants.AUTHENTICATORS + getName() + ":" +
                             BasicCustomAuthenticatorConstants.LOCAL + retryParam);
-
                 }
             } else {
                 if (log.isDebugEnabled()) {
@@ -276,18 +278,15 @@ public class BasicCustomAuthenticator extends AbstractApplicationAuthenticator
                         BasicCustomAuthenticatorConstants.LOCAL + retryParam);
             }
 
-
         } catch (IOException e) {
             throw new AuthenticationFailedException(e.getMessage(), User.getUserFromUserName(request.getParameter
                     (BasicCustomAuthenticatorConstants.USER_NAME)), e);
         }
     }
 
-
     @Override
-    protected void processAuthenticationResponse(HttpServletRequest request,
-                                                 HttpServletResponse response, AuthenticationContext context)
-            throws AuthenticationFailedException {
+    protected void processAuthenticationResponse(HttpServletRequest request, HttpServletResponse response,
+                                                 AuthenticationContext context) throws AuthenticationFailedException {
 
         String username = request.getParameter(BasicCustomAuthenticatorConstants.USER_NAME);
         String password = request.getParameter(BasicCustomAuthenticatorConstants.PASSWORD);
@@ -307,7 +306,6 @@ public class BasicCustomAuthenticator extends AbstractApplicationAuthenticator
 
         // Reset RE_CAPTCHA_USER_DOMAIN thread local variable before the authentication
         IdentityUtil.threadLocalProperties.get().remove(RE_CAPTCHA_USER_DOMAIN);
-
 
         try {
             int tenantId = IdentityTenantUtil.getTenantIdOfUser(username);
@@ -341,8 +339,8 @@ public class BasicCustomAuthenticator extends AbstractApplicationAuthenticator
                 log.debug("User authentication failed due to invalid credentials");
             }
             if (IdentityUtil.threadLocalProperties.get().get(RE_CAPTCHA_USER_DOMAIN) != null) {
-                username = IdentityUtil.addDomainToName(username, IdentityUtil.threadLocalProperties.get().get(RE_CAPTCHA_USER_DOMAIN)
-                        .toString());
+                username = IdentityUtil.addDomainToName(username,
+                        IdentityUtil.threadLocalProperties.get().get(RE_CAPTCHA_USER_DOMAIN).toString());
             }
             IdentityUtil.threadLocalProperties.get().remove(RE_CAPTCHA_USER_DOMAIN);
             throw new InvalidCredentialsException("User authentication failed due to invalid credentials",
@@ -362,8 +360,9 @@ public class BasicCustomAuthenticator extends AbstractApplicationAuthenticator
                 boolean multipleAttributeEnable;
                 String domain = UserCoreUtil.getDomainFromThreadLocal();
                 if (domain != null && domain.trim().length() > 0) {
-                    multipleAttributeEnable = Boolean.parseBoolean(userStoreManager.getSecondaryUserStoreManager(domain).
-                            getRealmConfiguration().getUserStoreProperty("MultipleAttributeEnable"));
+                    multipleAttributeEnable = Boolean.parseBoolean(
+                            userStoreManager.getSecondaryUserStoreManager(domain).getRealmConfiguration().
+                                    getUserStoreProperty("MultipleAttributeEnable"));
                 } else {
                     multipleAttributeEnable = Boolean.parseBoolean(userStoreManager.
                             getRealmConfiguration().getUserStoreProperty("MultipleAttributeEnable"));
@@ -374,8 +373,8 @@ public class BasicCustomAuthenticator extends AbstractApplicationAuthenticator
                             log.debug("Searching for UserNameAttribute value for user " + username +
                                     " for claim uri : " + userNameUri);
                         }
-                        String usernameValue = userStoreManager.
-                                getUserClaimValue(MultitenantUtils.getTenantAwareUsername(username), userNameUri, null);
+                        String usernameValue = userStoreManager.getUserClaimValue(
+                                MultitenantUtils.getTenantAwareUsername(username), userNameUri, null);
                         if (usernameValue != null && usernameValue.trim().length() > 0) {
                             tenantDomain = MultitenantUtils.getTenantDomain(username);
                             usernameValue = FrameworkUtils.prependUserStoreDomainToName(usernameValue);
@@ -408,21 +407,25 @@ public class BasicCustomAuthenticator extends AbstractApplicationAuthenticator
 
     @Override
     protected boolean retryAuthenticationEnabled() {
+
         return true;
     }
 
     @Override
     public String getContextIdentifier(HttpServletRequest request) {
+
         return request.getParameter("sessionDataKey");
     }
 
     @Override
     public String getFriendlyName() {
+
         return BasicCustomAuthenticatorConstants.AUTHENTICATOR_FRIENDLY_NAME;
     }
 
     @Override
     public String getName() {
+
         return BasicCustomAuthenticatorConstants.AUTHENTICATOR_NAME;
     }
 }

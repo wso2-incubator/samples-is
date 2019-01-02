@@ -44,8 +44,8 @@
 
         String errorMessage = "Authentication Failed! Please Retry";
         String errorCode = "";
-        if(request.getParameter(Constants.ERROR_CODE)!=null){
-            errorCode = request.getParameter(Constants.ERROR_CODE) ;
+        if (request.getParameter(Constants.ERROR_CODE) != null) {
+            errorCode = request.getParameter(Constants.ERROR_CODE);
         }
         String loginFailed = "false";
 
@@ -102,31 +102,30 @@
 
         <script>
             function checkSessionKey() {
-                        $.ajax({
-                            type: "GET",
-                            url: "<%=loginContextURL%>?sessionDataKey=" + getParameterByName("sessionDataKey") +
-                                "&relyingParty=" + getParameterByName("relyingParty") + "&tenantDomain=" +
-                                getParameterByName("tenantDomain"),
-                            success: function (data) {
-                                if (data && data.status == 'redirect' && data.redirectUrl && data.redirectUrl.length > 0) {
-                                    window.location.href = data.redirectUrl;
-                                }
-                            }
-                        });
+                $.ajax({
+                    type: "GET",
+                    url: "<%=loginContextURL%>?sessionDataKey=" + getParameterByName("sessionDataKey") +
+                    "&relyingParty=" + getParameterByName("relyingParty") + "&tenantDomain=" +
+                    getParameterByName("tenantDomain"),
+                    success: function (data) {
+                        if (data && data.status == 'redirect' && data.redirectUrl && data.redirectUrl.length > 0) {
+                            window.location.href = data.redirectUrl;
+                        }
                     }
-
+                });
+            }
 
             function getParameterByName(name, url) {
-                     if (!url) {
-                        url = window.location.href;
-                     }
-                     name = name.replace(/[\[\]]/g, '\\$&');
-                     var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-                     results = regex.exec(url);
-                     if (!results) return null;
-                     if (!results[2]) return "";
-                     return decodeURIComponent(results[2].replace(/\+/g, ' '));
-                 }
+                if (!url) {
+                    url = window.location.href;
+                }
+                name = name.replace(/[\[\]]/g, '\\$&');
+                var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                    results = regex.exec(url);
+                if (!results) return null;
+                if (!results[2]) return "";
+                return decodeURIComponent(results[2].replace(/\+/g, ' '));
+            }
         </script>
 
     </head>
@@ -141,7 +140,8 @@
                 <a href="#">
                     <img src="images/logo-inverse.svg" alt="wso2" title="wso2" class="logo">
 
-                    <h1><em><%=AuthenticationEndpointUtil.i18n(resourceBundle, "identity.server")%></em></h1>
+                    <h1><em><%=AuthenticationEndpointUtil.i18n(resourceBundle, "identity.server")%>
+                    </em></h1>
                 </a>
             </div>
         </div>
@@ -157,7 +157,8 @@
                 <div class="container col-xs-10 col-sm-6 col-md-6 col-lg-3 col-centered wr-content wr-login col-centered">
                     <div>
                         <h2 class="wr-title uppercase blue-bg padding-double white boarder-bottom-blue
-                        margin-none"><%=AuthenticationEndpointUtil.i18n(resourceBundle, "login")%></h2>
+                        margin-none"><%=AuthenticationEndpointUtil.i18n(resourceBundle, "login")%>
+                        </h2>
                     </div>
                     <div class="boarder-all ">
                         <div class="clearfix"></div>
@@ -196,15 +197,15 @@
                             %>
                             <%@ include file="basicauth.jsp" %>
                             <%
-
+                                    }
                                 }
-
-                            }
                             }
                             %>
 
-                            <%if (idpAuthenticatorMapping != null &&
-                                    idpAuthenticatorMapping.get(Constants.RESIDENT_IDP_RESERVED_NAME) != null) { %>
+                            <%
+                                if (idpAuthenticatorMapping != null &&
+                                        idpAuthenticatorMapping.get(Constants.RESIDENT_IDP_RESERVED_NAME) != null) {
+                            %>
 
                             <%} %>
                             <%
@@ -213,98 +214,106 @@
                             %>
                             <div class="form-group">
                                 <% if (hasLocalLoginOptions) { %>
-                                <label class="font-large"><%=AuthenticationEndpointUtil.i18n(resourceBundle, "other.login.options")%></label>
+                                <label class="font-large"><%=AuthenticationEndpointUtil.i18n(resourceBundle, "other.login.options")%>
+                                </label>
                                 <%} %>
                             </div>
                             <div class="form-group">
                                 <%
                                     int iconId = 0;
                                     if (idpAuthenticatorMapping != null) {
-                                    for (Map.Entry<String, String> idpEntry : idpAuthenticatorMapping.entrySet()) {
-                                        iconId++;
-                                        if (!idpEntry.getKey().equals(Constants.RESIDENT_IDP_RESERVED_NAME)) {
-                                            String idpName = idpEntry.getKey();
-                                            boolean isHubIdp = false;
-                                            if (idpName.endsWith(".hub")) {
-                                                isHubIdp = true;
-                                                idpName = idpName.substring(0, idpName.length() - 4);
-                                            }
+                                        for (Map.Entry<String, String> idpEntry : idpAuthenticatorMapping.entrySet()) {
+                                            iconId++;
+                                            if (!idpEntry.getKey().equals(Constants.RESIDENT_IDP_RESERVED_NAME)) {
+                                                String idpName = idpEntry.getKey();
+                                                boolean isHubIdp = false;
+                                                if (idpName.endsWith(".hub")) {
+                                                    isHubIdp = true;
+                                                    idpName = idpName.substring(0, idpName.length() - 4);
+                                                }
                                 %>
                                 <% if (isHubIdp) { %>
                                 <div>
-                                <a href="#" data-toggle="popover" data-placement="bottom"
-                                   title="Sign in with <%=Encode.forHtmlAttribute(idpName)%>" id="popover" id="icon-<%=iconId%>">
-                                    <img class="idp-image" src="images/login-icon.png"
-                                         title="<%=AuthenticationEndpointUtil.i18n(resourceBundle, "sign.in.with")%>
+                                    <a href="#" data-toggle="popover" data-placement="bottom"
+                                       title="Sign in with <%=Encode.forHtmlAttribute(idpName)%>" id="popover"
+                                       id="icon-<%=iconId%>">
+                                        <img class="idp-image" src="images/login-icon.png"
+                                             title="<%=AuthenticationEndpointUtil.i18n(resourceBundle, "sign.in.with")%>
                                          <%=Encode.forHtmlAttribute(idpName)%>"/>
 
-                                    <div id="popover-head" class="hide">
-                                        <label class="font-large"><%=AuthenticationEndpointUtil.i18n(resourceBundle, "sign.in.with")%>
-                                        <%=Encode.forHtmlContent(idpName)%></label>
-                                    </div>
-                                    <div id="popover-content" class="hide">
-                                        <form class="form-inline">
-                                            <div class="form-group">
-                                                <input id="domainName" class="form-control" type="text"
-                                                       placeholder="Domain Name">
-                                            </div>
-                                            <input type="button" class="btn btn-primary go-btn"
-                                                   onClick="javascript: myFunction('<%=idpName%>','<%=idpEntry.getValue()%>','domainName')"
-                                                   value="<%=AuthenticationEndpointUtil.i18n(resourceBundle, "GO")%>"/>
-                                        </form>
+                                        <div id="popover-head" class="hide">
+                                            <label class="font-large"><%=AuthenticationEndpointUtil.i18n(resourceBundle, "sign.in.with")%>
+                                                <%=Encode.forHtmlContent(idpName)%>
+                                            </label>
+                                        </div>
+                                        <div id="popover-content" class="hide">
+                                            <form class="form-inline">
+                                                <div class="form-group">
+                                                    <input id="domainName" class="form-control" type="text"
+                                                           placeholder="Domain Name">
+                                                </div>
+                                                <input type="button" class="btn btn-primary go-btn"
+                                                       onClick="javascript: myFunction('<%=idpName%>','<%=idpEntry.getValue()%>','domainName')"
+                                                       value="<%=AuthenticationEndpointUtil.i18n(resourceBundle, "GO")%>"/>
+                                            </form>
 
-                                    </div>
-                                </a>
-                                    <label for="icon-<%=iconId%>"><%=Encode.forHtmlContent(idpName)%></label>
+                                        </div>
+                                    </a>
+                                    <label for="icon-<%=iconId%>"><%=Encode.forHtmlContent(idpName)%>
+                                    </label>
                                 </div>
                                 <%} else { %>
                                 <div>
-                                <a onclick="javascript: handleNoDomain('<%=Encode.forJavaScriptAttribute(Encode.
+                                    <a onclick="javascript: handleNoDomain('<%=Encode.forJavaScriptAttribute(Encode.
                                 forUriComponent(idpName))%>',
-                                        '<%=Encode.forJavaScriptAttribute(Encode.forUriComponent(idpEntry.getValue()))%>')"
-                                   href="#" id="icon-<%=iconId%>">
-                                    <img class="idp-image" src="images/login-icon.png" data-toggle="tooltip"
-                                         data-placement="top" title="Sign in with <%=Encode.forHtmlAttribute(idpName)%>"/>
-                                </a>
-                                <label for="icon-<%=iconId%>"><%=Encode.forHtmlContent(idpName)%></label>
-                                    </div>
+                                            '<%=Encode.forJavaScriptAttribute(Encode.forUriComponent(idpEntry.getValue()))%>')"
+                                       href="#" id="icon-<%=iconId%>">
+                                        <img class="idp-image" src="images/login-icon.png" data-toggle="tooltip"
+                                             data-placement="top"
+                                             title="Sign in with <%=Encode.forHtmlAttribute(idpName)%>"/>
+                                    </a>
+                                    <label for="icon-<%=iconId%>"><%=Encode.forHtmlContent(idpName)%>
+                                    </label>
+                                </div>
                                 <%} %>
                                 <%
                                 } else if (localAuthenticatorNames.size() > 0) {
                                     if (localAuthenticatorNames.contains(IWA_AUTHENTICATOR)) {
                                 %>
                                 <div>
-                                <a onclick="javascript: handleNoDomain('<%=Encode.forJavaScriptAttribute(Encode.
+                                    <a onclick="javascript: handleNoDomain('<%=Encode.forJavaScriptAttribute(Encode.
                                 forUriComponent(idpEntry.getKey()))%>',
-                                        'IWAAuthenticator')" class="main-link" style="cursor:pointer" id="icon-<%=iconId%>">
-                                    <img class="idp-image" src="images/login-icon.png" data-toggle="tooltip"
-                                         data-placement="top" title="<%=AuthenticationEndpointUtil.i18n(resourceBundle, "sign.in.with")%> IWA"/>
-                                </a>
-                                <label for="icon-<%=iconId%>">IWA</label>
+                                            'IWAAuthenticator')" class="main-link" style="cursor:pointer"
+                                       id="icon-<%=iconId%>">
+                                        <img class="idp-image" src="images/login-icon.png" data-toggle="tooltip"
+                                             data-placement="top"
+                                             title="<%=AuthenticationEndpointUtil.i18n(resourceBundle, "sign.in.with")%> IWA"/>
+                                    </a>
+                                    <label for="icon-<%=iconId%>">IWA</label>
                                 </div>
                                 <%
                                     }
                                     if (localAuthenticatorNames.contains(FIDO_AUTHENTICATOR)) {
                                 %>
                                 <div>
-                                <a onclick="javascript: handleNoDomain('<%=Encode.forJavaScriptAttribute(Encode.
+                                    <a onclick="javascript: handleNoDomain('<%=Encode.forJavaScriptAttribute(Encode.
                                 forUriComponent(idpEntry.getKey()))%>',
-                                        'FIDOAuthenticator')" class="main-link" style="cursor:pointer" id="icon-<%=iconId%>">
-                                    <img class="idp-image" src="images/login-icon.png" data-toggle="tooltip"
-                                         data-placement="top" title="<%=AuthenticationEndpointUtil.i18n(resourceBundle, "sign.in.with")%> FIDO"/>
-                                </a>
-                                <label for="icon-<%=iconId%>">FIDO</label>
+                                            'FIDOAuthenticator')" class="main-link" style="cursor:pointer"
+                                       id="icon-<%=iconId%>">
+                                        <img class="idp-image" src="images/login-icon.png" data-toggle="tooltip"
+                                             data-placement="top"
+                                             title="<%=AuthenticationEndpointUtil.i18n(resourceBundle, "sign.in.with")%> FIDO"/>
+                                    </a>
+                                    <label for="icon-<%=iconId%>">FIDO</label>
 
                                 </div>
                                 <%
                                             }
                                         }
-
                                     }
-                                    }%>
-
+                                }
+                                %>
                             </div>
-
 
                             <% } %>
 
@@ -325,7 +334,8 @@
         <div class="container-fluid">
             <p><%=AuthenticationEndpointUtil.i18n(resourceBundle, "wso2.identity.server")%> | &copy;
                 <script>document.write(new Date().getFullYear());</script>
-                <a href="http://wso2.com/" target="_blank"><i class="icon fw fw-wso2"></i> Inc</a>. <%=AuthenticationEndpointUtil.i18n(resourceBundle, "all.right.reserved")%>
+                <a href="http://wso2.com/" target="_blank"><i class="icon fw fw-wso2"></i>
+                    Inc</a>. <%=AuthenticationEndpointUtil.i18n(resourceBundle, "all.right.reserved")%>
             </p>
         </div>
     </footer>
@@ -366,6 +376,7 @@
             }
             %>
         });
+
         function myFunction(key, value, name) {
             var object = document.getElementById(name);
             var domain = object.value;
@@ -373,17 +384,17 @@
 
             if (domain != "") {
                 document.location = "<%=commonauthURL%>?idp=" + key + "&authenticator=" + value +
-                        "&sessionDataKey=<%=Encode.forUriComponent(request.getParameter("sessionDataKey"))%>&domain=" +
-                        domain;
+                    "&sessionDataKey=<%=Encode.forUriComponent(request.getParameter("sessionDataKey"))%>&domain=" +
+                    domain;
             } else {
                 document.location = "<%=commonauthURL%>?idp=" + key + "&authenticator=" + value +
-                        "&sessionDataKey=<%=Encode.forUriComponent(request.getParameter("sessionDataKey"))%>";
+                    "&sessionDataKey=<%=Encode.forUriComponent(request.getParameter("sessionDataKey"))%>";
             }
         }
 
         function handleNoDomain(key, value) {
             document.location = "<%=commonauthURL%>?idp=" + key + "&authenticator=" + value +
-                    "&sessionDataKey=<%=Encode.forUriComponent(request.getParameter("sessionDataKey"))%>";
+                "&sessionDataKey=<%=Encode.forUriComponent(request.getParameter("sessionDataKey"))%>";
         }
 
         $('#popover').popover({
@@ -395,12 +406,10 @@
                 return $("#popover-content").html();
             }
         });
-        window.onunload = function(){};
+        window.onunload = function () {
+        };
     </script>
 
     </body>
     </html>
-
-
 </fmt:bundle>
-

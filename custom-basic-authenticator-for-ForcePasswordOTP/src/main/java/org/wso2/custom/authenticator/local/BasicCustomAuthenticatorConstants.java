@@ -15,10 +15,11 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
 package org.wso2.custom.authenticator.local;
 
 /**
- * Constants used by the BasicAuthenticator
+ * Constants used by the BasicAuthenticator.
  */
 public abstract class BasicCustomAuthenticatorConstants {
 
@@ -34,5 +35,4 @@ public abstract class BasicCustomAuthenticatorConstants {
     public static final String LOCAL = "LOCAL";
     public static final String UTF_8 = "UTF-8";
     public static final boolean ENABLE_PASSWORD_RESET_OTP_CONF = true;
-
 }

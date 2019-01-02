@@ -32,3 +32,4 @@ Please follow below steps to add new projects to the repository.
  - [Custom Permission Claim Handler](custom-permission-claim-handler/) by [Nilasini Thirunavukkarasu](https://github.com/nilasini) - A custom claim handler that is capable of getting custom permissions along with the id token.
  - [Custom Password Generator](custom-password-generator/) by [Nilasini Thirunavukkarasu](https://github.com/nilasini) - Ability to generate random passwords that satisfies your own password policies.
  - [Custom User Operation Event Listener](custom-user-operation-event-listener/) by [Nilasini Thirunavukkarasu](https://github.com/nilasini) - Ability to generate random passwords that satisfies your own password policies.
+ - [Custom Basic Authenticator for Force Password Reset via OTP](custom-basic-authenticator-for-ForcePasswordOTP/) by [Dinali Dabarera](https://github.com/gdrdabarera) - A custom basic authenticator which does force password reset via OTP.
