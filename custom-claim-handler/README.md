@@ -23,8 +23,9 @@ Tested with IS-5.3.0
 11) Parse the id token using \[2], now you should be able to see the claim __keplerNumber__ as a json attribute.
 
 
-\[1] https://medium.com/@nilasini/sso-within-two-sps-while-using-a-custom-authenticator-and-a-custom-claim-handler-wso2is-5-3-0-bd473361ddf6
-\[2] https://jwt.io/
+\[1] - https://medium.com/@nilasini/sso-within-two-sps-while-using-a-custom-authenticator-and-a-custom-claim-handler-wso2is-5-3-0-bd473361ddf6
+
+\[2] - https://jwt.io/
 
 
 
