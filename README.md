@@ -33,3 +33,4 @@ Please follow below steps to add new projects to the repository.
  - [Custom Password Generator](custom-password-generator/) by [Nilasini Thirunavukkarasu](https://github.com/nilasini) - Ability to generate random passwords that satisfies your own password policies.
  - [Custom User Operation Event Listener](custom-user-operation-event-listener/) by [Nilasini Thirunavukkarasu](https://github.com/nilasini) - Ability to generate random passwords that satisfies your own password policies.
  - [Custom Scope Handler](custom-scope-handler/) by [Abilashini Thiyagarajah](https://github.com/Abilashini) - A custom scope handler to remove the scopes which are not allowed from the token request and generate the access token with only the allowed scopes. 
+ - [Custom Email Module](custom-email-module/) by [Abhishek De Silva](https://github.com/abhishekdesilva) - A custom email module to send notification emails with HTML content for the WSO2 IS 5.3.0 and below. 
