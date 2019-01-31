@@ -35,7 +35,7 @@
     String commonAuthCallerPath = request.getParameter("commonAuthCallerPath");
     String sessionDataKey = request.getParameter("sessionDataKey");
 
-    if(StringUtils.isBlank(tenantDomain)) {
+    if (StringUtils.isBlank(tenantDomain)) {
         tenantDomain = IdentityManagementEndpointConstants.SUPER_TENANT;
     }
 %>
@@ -44,7 +44,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%=IdentityManagementEndpointUtil.i18n(recoveryResourceBundle, "Wso2.identity.server")%></title>
+    <title><%=IdentityManagementEndpointUtil.i18n(recoveryResourceBundle, "Wso2.identity.server")%>
+    </title>
 
     <link rel="icon" href="images/favicon.png" type="image/x-icon"/>
     <link href="libs/bootstrap_3.3.5/css/bootstrap.min.css" rel="stylesheet">
@@ -69,7 +70,8 @@
                  "Wso2")%> title=<%=IdentityManagementEndpointUtil.i18n(recoveryResourceBundle,
                  "Wso2")%> class="logo">
 
-                <h1><em><%=IdentityManagementEndpointUtil.i18n(recoveryResourceBundle, "Identity.server")%></em></h1>
+                <h1><em><%=IdentityManagementEndpointUtil.i18n(recoveryResourceBundle, "Identity.server")%>
+                </em></h1>
             </a>
         </div>
     </div>
@@ -96,88 +98,86 @@
                 <div class="alert alert-danger" id="error-msg" hidden="hidden"></div>
 
                 <div class="padding-double">
-                    <form method="post" action="/accountrecoveryendpoint/custom-password-reset-complete.jsp" id="passwordResetForm">
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group required">
-                                <label class="control-label">
-                                    <%=IdentityManagementEndpointUtil.i18n(recoveryResourceBundle, "Enter.new.password")%>
-                                </label>
-                                <input id="reset-password" name="reset-password" type="password"
-                                       class="form-control" required="">
-                            </div>
+                    <form method="post" action="/accountrecoveryendpoint/custom-password-reset-complete.jsp"
+                          id="passwordResetForm">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group required">
+                            <label class="control-label">
+                                <%=IdentityManagementEndpointUtil.i18n(recoveryResourceBundle, "Enter.new.password")%>
+                            </label>
+                            <input id="reset-password" name="reset-password" type="password"
+                                   class="form-control" required="">
+                        </div>
 
-                            <%
-                                if (callback != null) {
-                            %>
-                            <div>
-                                <input type="hidden" name="callback" value="<%=Encode.forHtmlAttribute(callback)%>"/>
-                            </div>
-                            <%
-                                }
-                            %>
-                            <%
-                                if (tenantDomain != null) {
-                            %>
-                            <div>
-                                <input type="hidden" name="tenantdomain"
-                                       value="<%=Encode.forHtmlAttribute(tenantDomain)%>"/>
-                            </div>
-                            <%
-                                }
-                            %>
-                            <%
-                                if (username != null) {
-                            %>
-                            <div>
-                                <input type="hidden" name="username"
-                                       value="<%=Encode.forHtmlAttribute(username)%>"/>
-                            </div>
-                            <%
-                                }
-                            %>
-                                <%
-                                if (confirmationKey != null) {
-                            %>
-                            <div>
-                                <input type="hidden" name="confirmationKey"
-                                       value="<%=Encode.forHtmlAttribute(confirmationKey)%>"/>
-                            </div>
-                                <%
-                                }
-                            %>
-                                <%
-                                if (relayingParty != null) {
-                            %>
-                            <div>
-                                <input type="hidden" name="relayingParty"
-                                       value="<%=Encode.forHtmlAttribute(relayingParty)%>"/>
-                            </div>
-                                <%
-                                }
-                            %>
-                            <%
-                                if (sp != null) {
-                            %>
-                            <div>
-                                <input type="hidden" name="sp"
-                                       value="<%=Encode.forHtmlAttribute(sp)%>"/>
-                            </div>
-                                <%
-                                }
-                            %>
-                            
-                            <%
-                                if (sessionDataKey != null) {
-                            %>
-                            <div>
-                                <input type="hidden" name="sessionDataKey"
-                                       value="<%=Encode.forHtmlAttribute(sessionDataKey)%>"/>
-                            </div>
-                                <%
-                                }
-                            %>
+                        <%
+                            if (callback != null) {
+                        %>
+                        <div>
+                            <input type="hidden" name="callback" value="<%=Encode.forHtmlAttribute(callback)%>"/>
+                        </div>
+                        <%
+                            }
+                        %>
+                        <%
+                            if (tenantDomain != null) {
+                        %>
+                        <div>
+                            <input type="hidden" name="tenantdomain"
+                                   value="<%=Encode.forHtmlAttribute(tenantDomain)%>"/>
+                        </div>
+                        <%
+                            }
+                        %>
+                        <%
+                            if (username != null) {
+                        %>
+                        <div>
+                            <input type="hidden" name="username"
+                                   value="<%=Encode.forHtmlAttribute(username)%>"/>
+                        </div>
+                        <%
+                            }
+                        %>
+                        <%
+                            if (confirmationKey != null) {
+                        %>
+                        <div>
+                            <input type="hidden" name="confirmationKey"
+                                   value="<%=Encode.forHtmlAttribute(confirmationKey)%>"/>
+                        </div>
+                        <%
+                            }
+                        %>
+                        <%
+                            if (relayingParty != null) {
+                        %>
+                        <div>
+                            <input type="hidden" name="relayingParty"
+                                   value="<%=Encode.forHtmlAttribute(relayingParty)%>"/>
+                        </div>
+                        <%
+                            }
+                        %>
+                        <%
+                            if (sp != null) {
+                        %>
+                        <div>
+                            <input type="hidden" name="sp"
+                                   value="<%=Encode.forHtmlAttribute(sp)%>"/>
+                        </div>
+                        <%
+                            }
+                        %>
 
-
-
+                        <%
+                            if (sessionDataKey != null) {
+                        %>
+                        <div>
+                            <input type="hidden" name="sessionDataKey"
+                                   value="<%=Encode.forHtmlAttribute(sessionDataKey)%>"/>
+                        </div>
+                        <%
+                            }
+                        %>
 
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group required">
                             <label class="control-label">
@@ -209,7 +209,8 @@
         <p><%=IdentityManagementEndpointUtil.i18n(recoveryResourceBundle, "Wso2.identity.server")%> | &copy;
             <script>document.write(new Date().getFullYear());</script>
             <a href="http://wso2.com/" target="_blank"><i class="icon fw fw-wso2"></i> <%=
-             IdentityManagementEndpointUtil.i18n(recoveryResourceBundle, "Inc")%></a>.
+            IdentityManagementEndpointUtil.i18n(recoveryResourceBundle, "Inc")%>
+            </a>.
             <%=IdentityManagementEndpointUtil.i18n(recoveryResourceBundle, "All.rights.reserved")%>
         </p>
     </div>

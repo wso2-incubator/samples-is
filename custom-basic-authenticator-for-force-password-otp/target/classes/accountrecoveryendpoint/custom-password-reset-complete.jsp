@@ -28,7 +28,7 @@
 <%@ page import="org.wso2.carbon.identity.mgt.endpoint.client.model.*" %>
 <%@ page import="org.wso2.carbon.identity.mgt.endpoint.client.model.Error" %>
 <%@ page import="org.owasp.encoder.Encode" %>
-<%@page import = "java.util.logging.Logger" %>
+<%@page import="java.util.logging.Logger" %>
 <jsp:directive.include file="localize.jsp"/>
 
 <%
@@ -36,8 +36,7 @@
     String passwordHistoryErrorCode = "20035";
     String passwordPatternErrorCode = "22001";
 
-    String otp =
-            IdentityManagementEndpointUtil.getStringValue(request.getSession().getAttribute("confirmationKey"));
+    String otp = IdentityManagementEndpointUtil.getStringValue(request.getSession().getAttribute("confirmationKey"));
 
     String newPassword = request.getParameter("reset-password");
     String callback = request.getParameter("callback");
@@ -48,7 +47,7 @@
     String sp = request.getParameter("sp");
     String commonAuthCallerPath = request.getParameter("commonAuthCallerPath");
     String sessionDataKey = request.getParameter("sessionDataKey");
-    logger.info("---------- otp:" + otp );
+    logger.info("---------- otp:" + otp);
     logger.info("---------- confirmationkey:" + confirmationKey);
 
     if (StringUtils.isBlank(callback)) {
@@ -106,7 +105,6 @@
         return;
     }
 
-    
 %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -119,107 +117,107 @@
 <div class="container">
 
     <div id="infoModel" class="modal fade" role="dialog">
-   
+
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                   
+
                     <h4 class="modal-title">
-                        <%=IdentityManagementEndpointUtil.i18n(recoveryResourceBundle,"Information")%>
+                        <%=IdentityManagementEndpointUtil.i18n(recoveryResourceBundle, "Information")%>
                     </h4>
                 </div>
-                 <form method="post" action="/commonauth" id="passwordResetCompleteForm1">
-                <div>
-                    <p>
-                        <%=IdentityManagementEndpointUtil.i18n(recoveryResourceBundle,"Updated.the.password.successfully")%>
-                    </p>
-                </div>
-                
-                <!-- custom part -->
-                            <%       
-                
-                            if (callback != null) {
-                            %>
-                            <div>
-                                <input type="hidden" name="callback" value="<%=Encode.forHtmlAttribute(callback)%>"/>
-                            </div>
-                            <%
-                                }
-                            %>
-                            <%
-                                if (tenantDomain != null) {
-                            %>
-                            <div>
-                                <input type="hidden" name="tenantdomain"
-                                       value="<%=Encode.forHtmlAttribute(tenantDomain)%>"/>
-                            </div>
-                            <%
-                                }
-                            %>
-                            <%
-                                if (username != null) {
-                            %>
-                            <div>
-                                <input type="hidden" name="username"
-                                       value="<%=Encode.forHtmlAttribute(username)%>"/>
-                            </div>
-                            <%
-                                }
-                            %>
-                                <%
-                                if (confirmationKey != null) {
-                            %>
-                            <div>
-                                <input type="hidden" name="confirmationKey"
-                                       value="<%=Encode.forHtmlAttribute(confirmationKey)%>"/>
-                            </div>
-                                <%
-                                }
-                            %>
-                                <%
-                                if (relayingParty != null) {
-                            %>
-                            <div>
-                                <input type="hidden" name="relayingParty"
-                                       value="<%=Encode.forHtmlAttribute(relayingParty)%>"/>
-                            </div>
-                                <%
-                                }
-                            %>
-                            <%
-                                if (sp != null) {
-                            %>
-                            <div>
-                                <input type="hidden" name="sp"
-                                       value="<%=Encode.forHtmlAttribute(sp)%>"/>
-                            </div>
-                                <%
-                                }
-                            %>
-                            
-                            <%
-                                if (sessionDataKey != null) {
-                            %>
-                            <div>
-                                <input type="hidden" name="sessionDataKey"
-                                       value="<%=Encode.forHtmlAttribute(sessionDataKey)%>"/>
-                            </div>
-                                <%
-                                }
-                            %>
-                            
-                             <div>
-                                <input type="hidden" name="reset-password"
-                                       value="<%=Encode.forHtmlAttribute(newPassword)%>"/>
-                            </div>
-                
-                    </form>
-                
-                    <!-- finish submitting -->
-                
+                <form method="post" action="/commonauth" id="passwordResetCompleteForm1">
+                    <div>
+                        <p>
+                            <%=IdentityManagementEndpointUtil.i18n(recoveryResourceBundle, "Updated.the.password.successfully")%>
+                        </p>
+                    </div>
+
+                    <!-- custom part -->
+                    <%
+
+                        if (callback != null) {
+                    %>
+                    <div>
+                        <input type="hidden" name="callback" value="<%=Encode.forHtmlAttribute(callback)%>"/>
+                    </div>
+                    <%
+                        }
+                    %>
+                    <%
+                        if (tenantDomain != null) {
+                    %>
+                    <div>
+                        <input type="hidden" name="tenantdomain"
+                               value="<%=Encode.forHtmlAttribute(tenantDomain)%>"/>
+                    </div>
+                    <%
+                        }
+                    %>
+                    <%
+                        if (username != null) {
+                    %>
+                    <div>
+                        <input type="hidden" name="username"
+                               value="<%=Encode.forHtmlAttribute(username)%>"/>
+                    </div>
+                    <%
+                        }
+                    %>
+                    <%
+                        if (confirmationKey != null) {
+                    %>
+                    <div>
+                        <input type="hidden" name="confirmationKey"
+                               value="<%=Encode.forHtmlAttribute(confirmationKey)%>"/>
+                    </div>
+                    <%
+                        }
+                    %>
+                    <%
+                        if (relayingParty != null) {
+                    %>
+                    <div>
+                        <input type="hidden" name="relayingParty"
+                               value="<%=Encode.forHtmlAttribute(relayingParty)%>"/>
+                    </div>
+                    <%
+                        }
+                    %>
+                    <%
+                        if (sp != null) {
+                    %>
+                    <div>
+                        <input type="hidden" name="sp"
+                               value="<%=Encode.forHtmlAttribute(sp)%>"/>
+                    </div>
+                    <%
+                        }
+                    %>
+
+                    <%
+                        if (sessionDataKey != null) {
+                    %>
+                    <div>
+                        <input type="hidden" name="sessionDataKey"
+                               value="<%=Encode.forHtmlAttribute(sessionDataKey)%>"/>
+                    </div>
+                    <%
+                        }
+                    %>
+
+                    <div>
+                        <input type="hidden" name="reset-password"
+                               value="<%=Encode.forHtmlAttribute(newPassword)%>"/>
+                    </div>
+
+                </form>
+
+                <!-- finish submitting -->
+
                 <div class="modal-footer">
                     <button type="submit" id="btn-submit" class="btn btn-default" data-dismiss="modal">
-                        <%=IdentityManagementEndpointUtil.i18n(recoveryResourceBundle,"Close")%>
+                        <%=IdentityManagementEndpointUtil.i18n(recoveryResourceBundle, "Close")%>
                     </button>
                 </div>
             </div>
@@ -232,7 +230,7 @@
 <script type="application/javascript">
     $(document).ready(function () {
         $("#passwordResetCompleteForm1").submit();
-        
+
     });
 </script>
 </body>
