@@ -1,8 +1,7 @@
- # Remote User Store Management
+## Remote User Store Management.
 
+### Introduction.
 A sample project on consuming a remote user database as a secondary user store for WSO2 Identity Server.
-
-## Getting Started
 
 This project consists of the two modules, agent and manager.
 
@@ -15,12 +14,14 @@ the agent microservice in order to perform the [user management operations](http
 This implementation demonstrate how to list all the available users within the remote user store database
 in the WSO2 Identity Server.
 
-### Prerequisites
-* Extracted WSO2 Identity Server pack(Find the latest WSO2 IS pack from [here](https://wso2.com/identity-and-access-management/). We will call this extracted location as the ${IS_HOME}.
-Please note that this sample has only been tested with the version, 5.7.0.
+### Applicable product versions.
+wso2is-5.7.0
+
+### How to use.
+* Download and extract the WSO2 Identity Server pack(Find the latest WSO2 IS pack from [here](https://wso2.com/identity-and-access-management/). We will call this extracted location as the ${IS_HOME}.
 * A MySQL 5.7 database as the remote user database.
 
-### Deploying the Sample
+### Testing the project.
 
 * Execute the following SQL queries to create the sample database table with sample user names.
 ```
@@ -70,5 +71,3 @@ panel.
 * Set user store domain as the 'REMOTE-STORE' and then click 'Search Users'.
 * You can view all the users we have added to the UM_USER table with the search results!
 ![tutorial](./tutorial.gif)
-## Built With
-* [Maven](https://maven.apache.org/) - Dependency Management
