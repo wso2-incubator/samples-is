@@ -1,0 +1,10 @@
+org/wso2/carbon/remote/user/store/agent/util/DatabaseUtils.class
+org/wso2/carbon/remote/user/store/agent/exception/DatabaseAccessException.class
+org/wso2/carbon/remote/user/store/agent/constant/CommonConstants.class
+org/wso2/carbon/remote/user/store/agent/exception/UserStoreException.class
+org/wso2/carbon/remote/user/store/agent/resource/UserManagement.class
+org/wso2/carbon/remote/user/store/agent/manager/common/UserStoreManagerBuilder.class
+org/wso2/carbon/remote/user/store/agent/manager/common/UserStoreManager.class
+org/wso2/carbon/remote/user/store/agent/model/User.class
+org/wso2/carbon/remote/user/store/agent/Application.class
+org/wso2/carbon/remote/user/store/agent/manager/jdbc/OnPremJDBCUserStoreManager.class
