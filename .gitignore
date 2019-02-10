@@ -32,3 +32,5 @@ custom-claim-handler/target/
 custom-permission-claim-handler/target/
 custom-password-generator/target/
 custom-user-operation-event-listener/target/
+custom-remote-user-store-management/agent/target
+custom-remote-user-store-management/manager/target

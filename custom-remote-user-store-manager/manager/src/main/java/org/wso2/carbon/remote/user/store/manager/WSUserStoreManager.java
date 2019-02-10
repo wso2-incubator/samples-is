@@ -1,17 +1,19 @@
 /*
- * Copyright (c) 2019, WSO2 Inc. (http://wso2.com) All Rights Reserved.
+ * Copyright (c) 2019, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
  *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
+ * WSO2 Inc. licenses this file to you under the Apache License,
+ * Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *  http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
  */
 
 package org.wso2.carbon.remote.user.store.manager;
@@ -55,9 +57,8 @@ public class WSUserStoreManager extends AbstractUserStoreManager {
     private static final String WS_UM_PROPERTY_URL_NAME = "url";
     private static final String WS_UM_PROPERTY_URL_DISPLAY_NAME = "http://localhost:8080/sample-service";
     private static final String WS_UM_PROPERTY_URL_DESCRIPTION = "Endpoint URL for the user store web service";
-    private CloseableHttpClient closeableHttpClient;
-
     private static Log log = LogFactory.getLog(WSUserStoreManager.class);
+    private CloseableHttpClient closeableHttpClient;
 
     public WSUserStoreManager() {
 
@@ -169,6 +170,105 @@ public class WSUserStoreManager extends AbstractUserStoreManager {
         }
     }
 
+    public boolean doCheckIsUserInRole(String s, String s1) throws UserStoreException {
+
+        return false;
+    }
+
+    public String[] getProfileNames(String s) throws UserStoreException {
+
+        return new String[0];
+    }
+
+    public String[] getAllProfileNames() throws UserStoreException {
+
+        return new String[0];
+    }
+
+    public boolean isReadOnly() throws UserStoreException {
+
+        return false;
+    }
+
+    public int getUserId(String s) throws UserStoreException {
+
+        return 0;
+    }
+
+    public int getTenantId(String s) throws UserStoreException {
+
+        return 0;
+    }
+
+    public int getTenantId() throws UserStoreException {
+
+        return 0;
+    }
+
+    public Map<String, String> getProperties(Tenant tenant) throws UserStoreException {
+
+        return new HashMap<>();
+    }
+
+    public boolean isBulkImportSupported() throws UserStoreException {
+
+        return false;
+    }
+
+    public RealmConfiguration getRealmConfiguration() {
+
+        return realmConfig;
+    }
+
+    public Map<String, String> getProperties(org.wso2.carbon.user.api.Tenant tenant) throws org.wso2.carbon.user.api.UserStoreException {
+
+        return this.realmConfig.getUserStoreProperties();
+    }
+
+    public boolean isMultipleProfilesAllowed() {
+
+        return false;
+    }
+
+    public void addRememberMe(String s, String s1) throws org.wso2.carbon.user.api.UserStoreException {
+
+    }
+
+    public boolean isValidRememberMeToken(String s, String s1) throws org.wso2.carbon.user.api.UserStoreException {
+
+        return false;
+    }
+
+    @Override
+    public Properties getDefaultUserStoreProperties() {
+
+        Properties properties = new Properties();
+        Property connectionURL = new Property(
+                WS_UM_PROPERTY_URL_NAME,
+                WS_UM_PROPERTY_URL_DISPLAY_NAME,
+                WS_UM_PROPERTY_URL_DESCRIPTION,
+                null
+        );
+        properties.setMandatoryProperties(new Property[]{
+                        new Property(
+                                WS_UM_PROPERTY_URL_NAME,
+                                WS_UM_PROPERTY_URL_DISPLAY_NAME,
+                                WS_UM_PROPERTY_URL_DESCRIPTION,
+                                null
+                        )
+                }
+        );
+        properties.setOptionalProperties(new Property[]{
+                new Property(
+                        "Disabled",
+                        "false",
+                        "Whether user store is disabled",
+                        null
+                )
+        });
+        return properties;
+    }
+
     protected Map<String, String> getUserPropertyValues(String s, String[] strings, String s1) throws UserStoreException {
 
         return null;
@@ -271,11 +371,6 @@ public class WSUserStoreManager extends AbstractUserStoreManager {
         return new String[0];
     }
 
-    public boolean doCheckIsUserInRole(String s, String s1) throws UserStoreException {
-
-        return false;
-    }
-
     protected String[] doGetSharedRoleNames(String s, String s1, int i) throws UserStoreException {
 
         return new String[0];
@@ -284,100 +379,6 @@ public class WSUserStoreManager extends AbstractUserStoreManager {
     protected String[] doGetUserListOfRole(String s, String s1) throws UserStoreException {
 
         return new String[0];
-    }
-
-    public String[] getProfileNames(String s) throws UserStoreException {
-
-        return new String[0];
-    }
-
-    public String[] getAllProfileNames() throws UserStoreException {
-
-        return new String[0];
-    }
-
-    public boolean isReadOnly() throws UserStoreException {
-
-        return false;
-    }
-
-    public int getUserId(String s) throws UserStoreException {
-
-        return 0;
-    }
-
-    public int getTenantId(String s) throws UserStoreException {
-
-        return 0;
-    }
-
-    public int getTenantId() throws UserStoreException {
-
-        return 0;
-    }
-
-    public Map<String, String> getProperties(Tenant tenant) throws UserStoreException {
-
-        return new HashMap<>();
-    }
-
-    public boolean isBulkImportSupported() throws UserStoreException {
-
-        return false;
-    }
-
-    public RealmConfiguration getRealmConfiguration() {
-
-        return realmConfig;
-    }
-
-    public Map<String, String> getProperties(org.wso2.carbon.user.api.Tenant tenant) throws org.wso2.carbon.user.api.UserStoreException {
-
-        return this.realmConfig.getUserStoreProperties();
-    }
-
-    public boolean isMultipleProfilesAllowed() {
-
-        return false;
-    }
-
-    public void addRememberMe(String s, String s1) throws org.wso2.carbon.user.api.UserStoreException {
-
-    }
-
-    public boolean isValidRememberMeToken(String s, String s1) throws org.wso2.carbon.user.api.UserStoreException {
-
-        return false;
-    }
-
-    @Override
-    public Properties getDefaultUserStoreProperties() {
-
-        Properties properties = new Properties();
-        Property connectionURL = new Property(
-                WS_UM_PROPERTY_URL_NAME,
-                WS_UM_PROPERTY_URL_DISPLAY_NAME,
-                WS_UM_PROPERTY_URL_DESCRIPTION,
-                null
-        );
-        properties.setMandatoryProperties(new Property[]{
-                        new Property(
-                                WS_UM_PROPERTY_URL_NAME,
-                                WS_UM_PROPERTY_URL_DISPLAY_NAME,
-                                WS_UM_PROPERTY_URL_DESCRIPTION,
-                                null
-                        )
-                }
-        );
-        properties.setOptionalProperties(new Property[]{
-                new Property(
-                        "Disabled",
-                        "false",
-                        "Whether user store is disabled",
-                        null
-                )
-        });
-        return properties;
     }
 
     private String getHostName() {
