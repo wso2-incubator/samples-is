@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.0.0" immediate="true" name="org.wso2.carbon.remote.user.store.manager.component">
-    <implementation class="org.wso2.carbon.remote.user.store.manager.internal.WSUserStoreDSComponent"/>
-    <reference name="realm.service" interface="org.wso2.carbon.user.core.service.RealmService" cardinality="1..1" policy="dynamic" bind="setRealmService" unbind="unsetRealmService"/>
-</scr:component>
