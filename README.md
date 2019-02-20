@@ -34,4 +34,5 @@ Please follow below steps to add new projects to the repository.
  - [Custom User Operation Event Listener](custom-user-operation-event-listener/) by [Nilasini Thirunavukkarasu](https://github.com/nilasini) - Ability to generate random passwords that satisfies your own password policies.
  - [Custom Scope Handler](custom-scope-handler/) by [Abilashini Thiyagarajah](https://github.com/Abilashini) - A custom scope handler to remove the scopes which are not allowed from the token request and generate the access token with only the allowed scopes. 
  - [Custom Basic Authenticator for Force Password Reset via OTP](custom-basic-authenticator-for-force-password-otp/) by [Dinali Dabarera](https://github.com/gdrdabarera) - A custom basic authenticator which does force password reset via OTP.
+ - [Custom PIP Attribute Finder](custom-pip-attribute-finder/) by [Vihanga Liyanage](https://github.com/vihanga-liyanage) - A custom PIP attribute finder that can map external user roles to internal roles based on a provided map.
  
