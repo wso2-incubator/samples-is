@@ -127,13 +127,7 @@
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                         <Bundle-Name>${project.artifactId}</Bundle-Name>
                         <Private-Package>org.wso2.carbon.remote.user.store.manager.internal,</Private-Package>
-                        <Import-Package>
-                            <!--org.wso2.carbon.utils.*,-->
-                            <!--org.wso2.carbon.core.*,-->
-                            <!--org.osgi.framework,-->
-                            <!--org.osgi.service.component,-->
-                            <!--;resolution:=optional-->
-                        </Import-Package>
+                        <Import-Package/>
                         <Export-Package>!org.wso2.carbon.remote.user.store.manager.internal,
                             org.wso2.carbon.remote.user.store.manager.*
                         </Export-Package>

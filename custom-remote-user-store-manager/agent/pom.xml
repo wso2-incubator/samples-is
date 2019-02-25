@@ -30,7 +30,7 @@
 
     <groupId>org.wso2.carbon.remote.user.store</groupId>
     <artifactId>org.wso2.carbon.remote.user.store.agent</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <name>Remote User Store Agent</name>
 
     <dependencies>
