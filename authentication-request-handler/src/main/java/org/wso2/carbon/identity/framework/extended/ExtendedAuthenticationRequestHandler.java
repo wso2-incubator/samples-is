@@ -1,3 +1,21 @@
+/*
+ * Copyright (c) 2019, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ *
+ * WSO2 Inc. licenses this file to you under the Apache License,
+ * Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 package org.wso2.carbon.identity.framework.extended;
 
 import org.apache.commons.lang.StringUtils;
@@ -19,6 +37,7 @@ public class ExtendedAuthenticationRequestHandler extends DefaultAuthenticationR
 
     private static final String ROLE_CLAIM = "http://wso2.org/claims/role";
     private static final String ROLE_TO_CHECK = "trip";
+    private static final String SP_NAME_TO_MATCH =  "TripAction";
 
     @Override
     protected void concludeFlow(HttpServletRequest request,
@@ -62,8 +81,8 @@ public class ExtendedAuthenticationRequestHandler extends DefaultAuthenticationR
     }
 
     private List<String> getUserRoles(AuthenticatedUser authenticatedUser) {
-        Map<ClaimMapping, String> userAttributes = authenticatedUser.getUserAttributes();
 
+        Map<ClaimMapping, String> userAttributes = authenticatedUser.getUserAttributes();
         ClaimMapping roleClaimMapping = null;
         String attributeSeparator = ",";
         for (ClaimMapping claimMapping : userAttributes.keySet()) {
@@ -87,7 +106,8 @@ public class ExtendedAuthenticationRequestHandler extends DefaultAuthenticationR
     }
 
     private boolean isAuthorizationEnforcedOnSp(String serviceProviderName) {
-        return StringUtils.equalsIgnoreCase(serviceProviderName, "TripAction");
+
+        return StringUtils.equalsIgnoreCase(serviceProviderName, SP_NAME_TO_MATCH);
     }
 
     private boolean isSamlLogin(AuthenticationContext context) {
