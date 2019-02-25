@@ -44,14 +44,11 @@ public class ExtendedAuthenticationRequestHandler extends DefaultAuthenticationR
                                 HttpServletResponse response,
                                 AuthenticationContext context) throws FrameworkException {
 
-
         boolean isAuthenticated = context.isRequestAuthenticated();
 
         if (isAuthenticated) {
             // Do the authorization logic here
-            if (isAuthorized(request, response, context)) {
-                // Nothing to do..
-            } else {
+            if (!isAuthorized(request, response, context)) {
                 // Since authorization failed we mark it as an overall failure
                 context.setRequestAuthenticated(false);
             }
