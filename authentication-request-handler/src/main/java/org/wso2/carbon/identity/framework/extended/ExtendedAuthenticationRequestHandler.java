@@ -34,10 +34,9 @@ import java.util.List;
 import java.util.Map;
 
 public class ExtendedAuthenticationRequestHandler extends DefaultAuthenticationRequestHandler {
-
     private static final String ROLE_CLAIM = "http://wso2.org/claims/role";
     private static final String ROLE_TO_CHECK = "trip";
-    private static final String SP_NAME_TO_MATCH =  "TripAction";
+    private static final String SP_NAME_TO_MATCH = "TripAction";
 
     @Override
     protected void concludeFlow(HttpServletRequest request,
@@ -53,7 +52,6 @@ public class ExtendedAuthenticationRequestHandler extends DefaultAuthenticationR
                 context.setRequestAuthenticated(false);
             }
         }
-
         super.concludeFlow(request, response, context);
     }
 
@@ -73,7 +71,6 @@ public class ExtendedAuthenticationRequestHandler extends DefaultAuthenticationR
                 return userRoles.contains(ROLE_TO_CHECK);
             }
         }
-
         return true;
     }
 
@@ -82,13 +79,14 @@ public class ExtendedAuthenticationRequestHandler extends DefaultAuthenticationR
         Map<ClaimMapping, String> userAttributes = authenticatedUser.getUserAttributes();
         ClaimMapping roleClaimMapping = null;
         String attributeSeparator = ",";
+
         for (ClaimMapping claimMapping : userAttributes.keySet()) {
+            if (claimMapping.getLocalClaim().getClaimUri().equals("MultiAttributeSeparator")) {
+                attributeSeparator = userAttributes.get(claimMapping);
+            }
             if (StringUtils.equals(claimMapping.getLocalClaim().getClaimUri(), ROLE_CLAIM)) {
                 roleClaimMapping = claimMapping;
                 break;
-            }
-            if(claimMapping.getLocalClaim().getClaimUri().equals("MultiAttributeSeparator")) {
-                attributeSeparator = userAttributes.get(claimMapping);
             }
         }
 
@@ -109,7 +107,6 @@ public class ExtendedAuthenticationRequestHandler extends DefaultAuthenticationR
 
     private boolean isSamlLogin(AuthenticationContext context) {
 
-        return StringUtils.equalsIgnoreCase(context.getRequestType(),
-                FrameworkConstants.RequestType.CLAIM_TYPE_SAML_SSO);
+        return StringUtils.equalsIgnoreCase(context.getRequestType(), FrameworkConstants.RequestType.CLAIM_TYPE_SAML_SSO);
     }
 }
