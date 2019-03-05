@@ -182,7 +182,6 @@
                             org.wso2.carbon.identity.oauth2.*,
                             org.wso2.carbon.user.core.*
                         </Import-Package>
-                        <Dynamic-Import>true</Dynamic-Import>
                     </instructions>
                 </configuration>
             </plugin>
