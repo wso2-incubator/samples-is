@@ -20,6 +20,7 @@ package org.wso2.custom.scope.handler.internal;
 import org.wso2.carbon.user.core.service.RealmService;
 
 public class CustomScopeHandlerDataHolder {
+
     private static CustomScopeHandlerDataHolder instance = new CustomScopeHandlerDataHolder();
 
     private RealmService realmService;
