@@ -27,8 +27,4 @@ hs_err_pid*
 *.iml
 
 # Target folders
-custom-carbon-log-appender/target/
-custom-claim-handler/target/
-custom-permission-claim-handler/target/
-custom-password-generator/target/
-custom-user-operation-event-listener/target/
+target

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><components xmlns:scr="http://www.osgi.org/xmlns/scr/v1.0.0">
+    <scr:component enabled="true" immediate="true" name="org.wso2.custom.authenticator.local.basic.component">
+        <implementation class="org.wso2.custom.authenticator.local.internal.BasicCustomAuthenticatorServiceComponent"/>
+        <property name="service.pid" value="org.wso2.custom.authenticator.local.basic.component"/>
+        <reference name="realm.service" interface="org.wso2.carbon.user.core.service.RealmService" cardinality="1..1" policy="dynamic" bind="setRealmService" unbind="unsetRealmService"/>
+    </scr:component>
+</components>

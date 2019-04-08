@@ -29,10 +29,12 @@ import org.wso2.carbon.user.core.service.RealmService;
 
 @Component(name = "org.wso2.custom.scope.handler", immediate = true)
 public class CustomScopeHandlerServiceComponent {
+
     private static Log log = LogFactory.getLog(CustomScopeHandlerServiceComponent.class);
 
     @Activate
     protected void activate(ComponentContext context) {
+
         log.info("Custom scope handler component activated successfully.");
     }
 

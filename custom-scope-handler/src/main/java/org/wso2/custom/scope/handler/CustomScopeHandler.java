@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Custom scope handler to remove the scopes other than the allowed scopes from the token request
+ * Custom scope handler to remove the scopes other than the allowed scopes from the token request.
  */
 public class CustomScopeHandler extends OAuth2ScopeHandler {
 
@@ -53,6 +53,7 @@ public class CustomScopeHandler extends OAuth2ScopeHandler {
     }
 
     public boolean canHandle(OAuthTokenReqMessageContext oAuthTokenReqMessageContext) {
+
         return true;
     }
 }
