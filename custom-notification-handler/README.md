@@ -26,7 +26,7 @@ customEmailSend.subscription.1=TRIGGER_NOTIFICATION
 ```
 4. Start the server.
 
- ### Testing the project.
+### Testing the project.
 1. In the management console, browse to the Manager -> Email Templates -> Add  and add the custom email template name.
 2. Browse to the Manager -> Email Templates -> Add and add the custom email template content.
 

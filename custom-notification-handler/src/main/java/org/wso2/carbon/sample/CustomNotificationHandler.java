@@ -30,11 +30,11 @@ import org.wso2.carbon.identity.event.handler.notification.NotificationConstants
 import org.wso2.carbon.identity.event.handler.notification.NotificationHandler;
 import org.wso2.carbon.identity.event.handler.notification.email.bean.Notification;
 import org.wso2.carbon.identity.event.handler.notification.util.NotificationUtil;
-import org.wso2.carbon.registry.api.RegistryException;
 import org.wso2.carbon.registry.core.Registry;
 import org.wso2.carbon.registry.core.Resource;
-import org.wso2.carbon.user.api.UserStoreException;
+import org.wso2.carbon.registry.core.exceptions.RegistryException;
 import org.wso2.carbon.sample.internal.CustomNotificationHandlerDataHolder;
+import org.wso2.carbon.user.api.UserStoreException;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -81,7 +81,6 @@ public class CustomNotificationHandler extends NotificationHandler {
     public void handleEvent(Event event) throws IdentityEventException {
 
         Map<String, String> placeHolderData = new HashMap<>();
-
         for (Map.Entry<String, Object> entry : event.getEventProperties().entrySet()) {
             if (entry.getValue() instanceof String) {
                 placeHolderData.put(entry.getKey(), (String) entry.getValue());
@@ -90,13 +89,13 @@ public class CustomNotificationHandler extends NotificationHandler {
 
         String notificationEvent = (String) event.getEventProperties().get(NotificationConstants.EmailNotification
                 .EMAIL_TEMPLATE_TYPE);
-
         if (ACCOUNT_CONFIRMATION_EMAIL_TEMPLATE_TYPE.equalsIgnoreCase(notificationEvent) && placeHolderData.containsKey
                 (CUSTOM_TEMPLATE_TYPE_PROPERTY_KEY)) {
             event.getEventProperties().put(NotificationConstants.EmailNotification
                     .EMAIL_TEMPLATE_TYPE, placeHolderData.get(CUSTOM_TEMPLATE_TYPE_PROPERTY_KEY));
             if (log.isDebugEnabled()) {
-                log.debug("Using the custom email template type " + placeHolderData.get(CUSTOM_TEMPLATE_TYPE_PROPERTY_KEY));
+                log.debug("Using the custom email template type: " +
+                        placeHolderData.get(CUSTOM_TEMPLATE_TYPE_PROPERTY_KEY));
             }
         } else if (PASSWORD_RESET_EMAIL_TEMPLATE_TYPE.equalsIgnoreCase(notificationEvent)) {
             String username = (String) event.getEventProperties().get(IdentityEventConstants.EventProperty.USER_NAME);
@@ -132,7 +131,6 @@ public class CustomNotificationHandler extends NotificationHandler {
 
                 if (registry != null && registry.resourceExists(CONFIG_LOCATION)) {
                     resource = registry.get(CONFIG_LOCATION);
-
                     if (roleClaimString != null) {
                         List<String> roleList = Arrays.asList(roleClaimString.trim().split(","));
                         for (String role : roleList) {
@@ -140,15 +138,15 @@ public class CustomNotificationHandler extends NotificationHandler {
                                 event.getEventProperties().put(NotificationConstants.EmailNotification
                                         .EMAIL_TEMPLATE_TYPE, resource.getProperty(role));
                                 if (log.isDebugEnabled()) {
-                                    log.debug("Using the custom email template type " + resource.getProperty(role));
+                                    log.debug("Using the custom email template type: " + resource.getProperty(role));
                                 }
                                 break;
                             }
                         }
                     } else {
-                        throw new IdentityEventException("Unable to find the role list claim for the user " + username);
+                        throw new IdentityEventException("Unable to find the role list claim " +
+                                "for the user: " + username);
                     }
-
                 } else {
                     if (log.isDebugEnabled()) {
                         log.debug("Registry configurations for custom notification handler is not defined. " +
@@ -156,13 +154,12 @@ public class CustomNotificationHandler extends NotificationHandler {
                     }
                 }
             } catch (UserStoreException e) {
-                throw new IdentityEventException("Unable to retrieve the registry for the tenant domain " +
+                throw new IdentityEventException("Unable to retrieve the registry for the tenant domain: " +
                         tenantDomain, e);
             } catch (RegistryException e) {
                 throw new IdentityEventException("Error occurred while reading the registry configurations.", e);
             }
         }
-
         Notification notification = NotificationUtil.buildNotification(event, placeHolderData);
         super.publishToStream(notification, placeHolderData);
     }

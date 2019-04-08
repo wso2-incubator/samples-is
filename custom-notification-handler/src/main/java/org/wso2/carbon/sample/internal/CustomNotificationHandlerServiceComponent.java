@@ -18,31 +18,33 @@
 
 package org.wso2.carbon.sample.internal;
 
-import org.wso2.carbon.sample.CustomNotificationHandler;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.osgi.service.component.ComponentContext;
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
+import org.osgi.service.component.annotations.ReferencePolicy;
 import org.wso2.carbon.identity.event.handler.AbstractEventHandler;
 import org.wso2.carbon.registry.core.service.RegistryService;
+import org.wso2.carbon.sample.CustomNotificationHandler;
 import org.wso2.carbon.user.core.service.RealmService;
 
-/**
- * @scr.component name="identity.event.custom.handler.notification" immediate="true
- * @scr.reference name="registry.service"
- * interface="org.wso2.carbon.registry.core.service.RegistryService" cardinality="1..1"
- * policy="dynamic" bind="setRegistryService" unbind="unsetRegistryService"
- * @scr.reference name="realm.service"
- * interface="org.wso2.carbon.user.core.service.RealmService"cardinality="1..1"
- * policy="dynamic" bind="setRealmService" unbind="unsetRealmService"
- */
+@Component(
+        name = "identity.event.custom.handler.notification",
+        immediate = true
+)
 public class CustomNotificationHandlerServiceComponent {
 
     private static Log log = LogFactory.getLog(CustomNotificationHandlerServiceComponent.class);
 
+    @Activate
     protected void activate(ComponentContext context) {
+
         try {
-            context.getBundleContext().registerService(AbstractEventHandler.class.getName(),new
-                    CustomNotificationHandler(), null);
+            context.getBundleContext().registerService(AbstractEventHandler.class.getName(),
+                    new CustomNotificationHandler(), null);
         } catch (Throwable e) {
             log.error("Error occurred while activating Custom Notification Handler Service Component", e);
         }
@@ -52,12 +54,20 @@ public class CustomNotificationHandlerServiceComponent {
     }
 
     protected void deactivate(ComponentContext context) {
+
         if (log.isDebugEnabled()) {
             log.debug("Custom Notification Handler bundle is de-activated");
         }
     }
 
+    @Reference(
+            name = "registry.service",
+            service = RegistryService.class,
+            cardinality = ReferenceCardinality.MANDATORY,
+            policy = ReferencePolicy.DYNAMIC,
+            unbind = "unsetRegistryService")
     protected void setRegistryService(RegistryService registryService) {
+
         if (log.isDebugEnabled()) {
             log.debug("Setting the Registry Service");
         }
@@ -65,13 +75,21 @@ public class CustomNotificationHandlerServiceComponent {
     }
 
     protected void unsetRegistryService(RegistryService registryService) {
+
         if (log.isDebugEnabled()) {
             log.debug("UnSetting the Registry Service");
         }
         CustomNotificationHandlerDataHolder.getInstance().setRegistryService(null);
     }
 
+    @Reference(
+            name = "user.realm.service.default",
+            service = org.wso2.carbon.user.core.service.RealmService.class,
+            cardinality = ReferenceCardinality.MANDATORY,
+            policy = ReferencePolicy.DYNAMIC,
+            unbind = "unsetRealmService")
     protected void setRealmService(RealmService realmService) {
+
         if (log.isDebugEnabled()) {
             log.debug("Setting the Realm Service");
         }
@@ -79,6 +97,7 @@ public class CustomNotificationHandlerServiceComponent {
     }
 
     protected void unsetRealmService(RealmService realmService) {
+
         if (log.isDebugEnabled()) {
             log.debug("UnSetting the Realm Service");
         }
