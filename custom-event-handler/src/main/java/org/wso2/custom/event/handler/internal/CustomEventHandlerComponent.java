@@ -34,11 +34,9 @@ public class CustomEventHandlerComponent {
 
     protected void activate(ComponentContext ctxt) {
 
-        CustomEventHandler eventHandler = new
-                CustomEventHandler();
+        CustomEventHandler eventHandler = new CustomEventHandler();
         // Register the custom listener as an OSGI service.
-        ctxt.getBundleContext().registerService(
-                AbstractEventHandler.class.getName(), eventHandler, null);
+        ctxt.getBundleContext().registerService(AbstractEventHandler.class.getName(), eventHandler, null);
         log.info("Custom event handler activated successfully.");
     }
 
