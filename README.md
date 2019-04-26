@@ -39,3 +39,4 @@ Please follow below steps to add new projects to the repository.
  - [Custom PIP Attribute Finder](custom-pip-attribute-finder/) by [Vihanga Liyanage](https://github.com/vihanga-liyanage) - A custom PIP attribute finder that can map external user roles to internal roles based on a provided map.
  - [Custom Remote User Store Manager](custom-remote-user-store-manager/) by [Tharindu Bandara](https://github.com/tharindu-bandara) - An aggregator module to consume a remote user database as a secondary user store.
  - [Custom Authentication Request Handler](authentication-request-handler/) by [Vimukthi Perera](https://github.com/VimukthiPerera) - Authenticator that will authorize the users based on their role to a targeted SAML based application.
+  - [Custom Event Handler](custom-event-handler/) by [Ishara Karunarathne](https://github.com/isharak) - Subscribe to POST_AUTHENTICATION events and log the authenticated user name
