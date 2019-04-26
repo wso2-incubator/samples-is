@@ -30,7 +30,6 @@ public class CustomEventHandler extends AbstractEventHandler {
 
     private static Log log = LogFactory.getLog(CustomEventHandler.class);
 
-
     @Override
     public void handleEvent(Event event) throws IdentityEventException {
 
@@ -38,11 +37,9 @@ public class CustomEventHandler extends AbstractEventHandler {
         String eventName = "POST_AUTHENTICATION";
         if (eventName.equals(event.getEventName())) {
             Map<String, Object> eventProperties = event.getEventProperties();
-
             String userName = (String) eventProperties.get(IdentityEventConstants.EventProperty.USER_NAME);
             log.info("Authenticated user : " + userName);
         }
-
     }
 
     @Override
