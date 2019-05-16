@@ -40,6 +40,9 @@ import static org.wso2.carbon.remote.user.store.agent.constant.CommonConstants.C
 import static org.wso2.carbon.remote.user.store.agent.constant.CommonConstants.CONNECTION_PARAMETER_VALIDATION_INTERVAL;
 import static org.wso2.carbon.remote.user.store.agent.constant.CommonConstants.CONNECTION_PARAMETER_VALIDATION_QUERY;
 
+/**
+ * Utility methods for database operations.
+ */
 public class DatabaseUtils {
 
     private static final int DEFAULT_MAX_ACTIVE = 40;

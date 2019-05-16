@@ -58,16 +58,18 @@ public class OnPremJDBCUserStoreManager implements UserStoreManager {
                 log.debug(sql);
             }
             try (PreparedStatement prepStmt = dbConnection.prepareStatement(sql)) {
-                ResultSet rs = prepStmt.executeQuery();
+                ResultSet resultSet = prepStmt.executeQuery();
                 dbConnection.commit();
                 List<String> users = new ArrayList<>();
-                while (rs.next()) {
-                    users.add(rs.getString(TABLE_COLUMN_USER_NAME));
+                while (resultSet.next()) {
+                    users.add(resultSet.getString(TABLE_COLUMN_USER_NAME));
                 }
                 return users.toArray(new String[]{});
             }
         } catch (SQLException e) {
-            log.debug("Error while getting the database connection", e);
+            if (log.isDebugEnabled()) {
+                log.debug("Error while getting the database connection", e);
+            }
             throw new RemoteUserStoreException("User Check Failure");
         }
     }

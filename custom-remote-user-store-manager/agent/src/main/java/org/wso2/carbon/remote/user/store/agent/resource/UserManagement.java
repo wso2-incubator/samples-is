@@ -52,7 +52,9 @@ public class UserManagement {
     public UserManagement(Properties connectionProperties) {
 
         this.dataSource = createUserStoreDataSource(connectionProperties);
-        log.debug("Successfully created the datasource");
+        if (log.isDebugEnabled()) {
+            log.debug("Successfully created the datasource");
+        }
     }
 
     /**
