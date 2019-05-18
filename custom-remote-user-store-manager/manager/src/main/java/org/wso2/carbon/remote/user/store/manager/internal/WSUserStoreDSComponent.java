@@ -51,9 +51,7 @@ public class WSUserStoreDSComponent {
 
     protected void deactivate(ComponentContext componentContext) {
 
-        if (log.isDebugEnabled()) {
-            log.info("WSUserStoreManager bundle is deactivated");
-        }
+        log.info("WSUserStoreManager bundle is deactivated");
     }
 
     @Reference(
@@ -65,13 +63,17 @@ public class WSUserStoreDSComponent {
     )
     protected void setRealmService(RealmService realmService) {
 
-        log.debug("Setting the Realm Service");
+        if (log.isDebugEnabled()) {
+            log.debug("Setting the Realm Service");
+        }
         WSUserStoreComponentHolder.getInstance().setRealmService(realmService);
     }
 
     protected void unsetRealmService(RealmService realmService) {
 
-        log.debug("UnSetting the Realm Service");
+        if (log.isDebugEnabled()) {
+            log.debug("UnSetting the Realm Service");
+        }
         WSUserStoreComponentHolder.getInstance().setRealmService(null);
     }
 }

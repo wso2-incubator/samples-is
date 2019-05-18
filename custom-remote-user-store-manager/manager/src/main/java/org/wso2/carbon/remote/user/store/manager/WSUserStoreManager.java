@@ -72,8 +72,7 @@ public class WSUserStoreManager extends AbstractUserStoreManager {
         this.claimManager = claimManager;
         this.userRealm = realm;
         this.tenantId = tenantId;
-        realmConfig.setUserStoreProperties(JDBCRealmUtil.getSQL(realmConfig
-                .getUserStoreProperties()));
+        realmConfig.setUserStoreProperties(JDBCRealmUtil.getSQL(realmConfig.getUserStoreProperties()));
 
         // new properties after carbon core 4.0.7 release.
         if (realmConfig.getUserStoreProperty(UserCoreConstants.RealmConfig.READ_GROUPS_ENABLED) != null) {
@@ -109,8 +108,7 @@ public class WSUserStoreManager extends AbstractUserStoreManager {
         // This property is now deprecated
         if (realmConfig
                 .getUserStoreProperty(UserCoreConstants.RealmConfig.PROPERTY_INTERNAL_ROLES_ONLY) != null) {
-            boolean internalRolesOnly = Boolean
-                    .parseBoolean(realmConfig
+            boolean internalRolesOnly = Boolean.parseBoolean(realmConfig
                             .getUserStoreProperty(UserCoreConstants.RealmConfig.PROPERTY_INTERNAL_ROLES_ONLY));
             if (internalRolesOnly) {
                 readGroupsEnabled = false;
