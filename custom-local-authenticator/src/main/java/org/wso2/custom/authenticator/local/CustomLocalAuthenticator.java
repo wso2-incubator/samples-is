@@ -51,7 +51,7 @@ public class CustomLocalAuthenticator extends AbstractApplicationAuthenticator
     private static final String AUTHENTICATOR_FRIENDLY_NAME = "Custom Local Authenticator";
     private static final String USER_NAME = "username";
     private static final String PASSWORD = "password";
-    private static final String PHOTO_SHARING_ROLE = "photoSharingRole";
+    private static final String PHOTO_SHARING_ROLE = "customRole";
     private static final String OIDC = "oidc";
 
     @Override
