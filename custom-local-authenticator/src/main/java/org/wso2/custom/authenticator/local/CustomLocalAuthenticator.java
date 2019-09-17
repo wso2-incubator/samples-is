@@ -115,7 +115,7 @@ public class CustomLocalAuthenticator extends AbstractApplicationAuthenticator
             }
 
             if (!authorization) {
-                log.error("user authorization is failed.");
+                log.error("Authentication failed! User: " + username + " doesn't have the role: " + REQUIRED_ROLE);
 
                 throw new InvalidCredentialsException("User authentication failed due to invalid credentials",
                         User.getUserFromUserName(username));
