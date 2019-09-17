@@ -39,7 +39,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Username Password based custom Authenticator
+ * Custom Local Authenticator that allow a user to authenticate only if the has the REQUIRED_ROLE.
  */
 public class CustomLocalAuthenticator extends AbstractApplicationAuthenticator
         implements LocalApplicationAuthenticator {
@@ -51,7 +51,7 @@ public class CustomLocalAuthenticator extends AbstractApplicationAuthenticator
     private static final String AUTHENTICATOR_FRIENDLY_NAME = "Custom Local Authenticator";
     private static final String USER_NAME = "username";
     private static final String PASSWORD = "password";
-    private static final String PHOTO_SHARING_ROLE = "customRole";
+    private static final String REQUIRED_ROLE = "customRole";
     private static final String OIDC = "oidc";
 
     @Override
@@ -108,7 +108,7 @@ public class CustomLocalAuthenticator extends AbstractApplicationAuthenticator
 
                     // verify user is assigned to role
                     authorization = ((AbstractUserStoreManager) userStoreManager).isUserInRole(
-                            username, PHOTO_SHARING_ROLE);
+                            username, REQUIRED_ROLE);
                 } catch (UserStoreException e) {
                     log.error(e);
                 }
