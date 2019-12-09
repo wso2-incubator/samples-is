@@ -39,7 +39,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Custom Local Authenticator that allow a user to authenticate only if the has the REQUIRED_ROLE.
+ * Custom Local Authenticator that allows a user to authenticate only if he/she has the REQUIRED_ROLE.
  */
 public class CustomLocalAuthenticator extends AbstractApplicationAuthenticator
         implements LocalApplicationAuthenticator {
@@ -64,17 +64,14 @@ public class CustomLocalAuthenticator extends AbstractApplicationAuthenticator
         String loginPage = ConfigurationFacade.getInstance().getAuthenticationEndpointURL();
         // This is the default WSO2 IS login page. If you can create your custom login page you can use
         // that instead.
-        String queryParams =
-                FrameworkUtils.getQueryStringWithFrameworkContextId(context.getQueryParams(),
+        String queryParams = FrameworkUtils.getQueryStringWithFrameworkContextId(context.getQueryParams(),
                         context.getCallerSessionKey(),
                         context.getContextIdentifier());
         try {
             String retryParam = "";
-
             if (context.isRetrying()) {
                 retryParam = "&authFailure=true&authFailureMsg=login.fail.message";
             }
-
             response.sendRedirect(response.encodeRedirectURL(loginPage + ("?" + queryParams)) +
                     "&authenticators=BasicAuthenticator:" + "LOCAL" + retryParam);
         } catch (IOException e) {
@@ -92,7 +89,7 @@ public class CustomLocalAuthenticator extends AbstractApplicationAuthenticator
 
         log.info("This is the processAuthenticationResponse method");
         String username = request.getParameter(USER_NAME);
-        boolean isAuthenticated = true;
+        boolean isAuthenticated = true; // You can have any preferred authentication mechanism defined here.
 
         if(isAuthenticated) {
             boolean authorization = false;
@@ -116,7 +113,6 @@ public class CustomLocalAuthenticator extends AbstractApplicationAuthenticator
 
             if (!authorization) {
                 log.error("Authentication failed! User: " + username + " doesn't have the role: " + REQUIRED_ROLE);
-
                 throw new InvalidCredentialsException("User authentication failed due to invalid credentials",
                         User.getUserFromUserName(username));
             } else {
