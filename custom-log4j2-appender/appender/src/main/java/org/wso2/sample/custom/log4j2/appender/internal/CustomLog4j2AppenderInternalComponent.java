@@ -8,7 +8,7 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 
 @Component(
-        name = "org.wso2.sample.custom.log4j2.appender",
+        name = "org.wso2.sample.custom.log4j2.appender.appender",
         immediate = true)
 public class CustomLog4j2AppenderInternalComponent {
 

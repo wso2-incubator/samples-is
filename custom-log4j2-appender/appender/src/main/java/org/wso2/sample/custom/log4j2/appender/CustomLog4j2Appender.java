@@ -53,9 +53,7 @@ public class CustomLog4j2Appender extends AbstractAppender {
     @Override
     public void append(LogEvent logEvent) {
 
-        if (log.isDebugEnabled()) {
-            log.debug("Log event: " + logEvent.getMessage().getFormattedMessage() + ", received.");
-        }
+        log.info("Log event: " + logEvent.getMessage().getFormattedMessage() + ", received.");
 
         /*
          Here we can do something with the received log event. Following example demonstrate that.
@@ -83,7 +81,7 @@ public class CustomLog4j2Appender extends AbstractAppender {
         // We could call an external endpoint here. Keep in mind that this log appender is not async operation.
         // Therefore, the client used to invoke the endpoint needs to invoke the endpoint asynchronously to avoid
         // performance issues.
-
+        log.info("Invoking external APIs to notify user existence");
         return;
     }
 }
