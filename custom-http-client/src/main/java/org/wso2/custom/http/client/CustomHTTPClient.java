@@ -96,7 +96,7 @@ public class CustomHTTPClient {
             asyncClient = httpClientBuilder.build();
             asyncClient.start();
         } catch (IOReactorException e) {
-            log.error("Error while creating the Asyc client.", e);
+            log.error("Error while creating the async client.", e);
         }
     }
 
