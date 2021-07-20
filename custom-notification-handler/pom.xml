@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.wso2.carbon</groupId>
+    <artifactId>org.wso2.carbon.sample.CustomNotificationHandler</artifactId>
+    <version>1.0</version>
+    <packaging>bundle</packaging>
+
+    <repositories>
+        <repository>
+            <id>wso2-nexus</id>
+            <name>WSO2 internal Repository</name>
+            <url>http://maven.wso2.org/nexus/content/groups/wso2-public/</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>daily</updatePolicy>
+                <checksumPolicy>ignore</checksumPolicy>
+            </releases>
+        </repository>
+        <repository>
+            <id>wso2.releases</id>
+            <name>WSO2 internal Repository</name>
+            <url>http://maven.wso2.org/nexus/content/repositories/releases/</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>daily</updatePolicy>
+                <checksumPolicy>ignore</checksumPolicy>
+            </releases>
+        </repository>
+        <repository>
+            <id>wso2.snapshots</id>
+            <name>Apache Snapshot Repository</name>
+            <url>http://maven.wso2.org/nexus/content/repositories/snapshots/</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>daily</updatePolicy>
+            </snapshots>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.wso2.carbon.identity.event.handler.notification</groupId>
+            <artifactId>org.wso2.carbon.identity.event.handler.notification</artifactId>
+            <version>${identity.event.handler.notification.handler.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.wso2.carbon.identity.framework</groupId>
+            <artifactId>org.wso2.carbon.identity.event</artifactId>
+            <version>${carbon.identity.framework.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.osgi</groupId>
+            <artifactId>org.eclipse.osgi.services</artifactId>
+            <version>${org.eclipse.osgi.services.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>org.apache.felix.scr.ds-annotations</artifactId>
+            <version>${org.apache.felix.scr.ds.annotations.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.plugin.version}</version>
+                <inherited>true</inherited>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-scr-plugin</artifactId>
+                <version>${maven.scr.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>generate-scr-scrdescriptor</id>
+                        <goals>
+                            <goal>scr</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <version>${maven.bundle.plugin.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+                        <Private-Package>
+                            org.wso2.carbon.sample.internal.*
+                        </Private-Package>
+                        <Export-Package>
+                            !org.wso2.carbon.sample.internal.*,
+                            org.wso2.carbon.sample.*
+                        </Export-Package>
+                        <Import-Package>
+                            org.osgi.framework.*;version="${org.osgi.framework.version.range}",
+                            org.osgi.service.component.*;version="${org.osgi.service.component.version.range}",
+                            org.apache.commons.logging; version="${commons.logging.imp.pkg.version.range}",
+                            org.apache.commons.lang; version="${commons-lang.wso2.osgi.version.range}",
+                            org.wso2.carbon.identity.event.handler.notification.*;
+                            version="${identity.event.handler.notification.handler.version}",
+                            org.wso2.carbon.identity.event.*;version="${carbon.identity.framework.version}",
+                            org.wso2.carbon.identity.core.*;
+                            version="${carbon.identity.framework.imp.pkg.version.range}",
+                            org.wso2.carbon.identity.base; version="${carbon.identity.framework.imp.pkg.version.range}",
+                            org.wso2.carbon.registry.core.*;version="${carbon.kernel.registry.imp.pkg.version}",
+                            org.wso2.carbon.user.core.*; version="${carbon.kernel.imp.pkg.version.range}",
+                            org.wso2.carbon.user.api; version="${carbon.user.api.imp.pkg.version.range}"
+                        </Import-Package>
+                    </instructions>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire.plugin.version}</version>
+                <configuration>
+                    <useSystemClassLoader>false</useSystemClassLoader>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <properties>
+        <org.osgi.service.component.version.range>[1.2.0, 2.0.0)</org.osgi.service.component.version.range>
+        <org.eclipse.osgi.services.version>3.3.100.v20130513-1956</org.eclipse.osgi.services.version>
+        <org.osgi.framework.version.range>[1.7.0, 2.0.0)</org.osgi.framework.version.range>
+        <carbon.kernel.imp.pkg.version.range>[4.4.0, 5.0.0)</carbon.kernel.imp.pkg.version.range>
+        <carbon.kernel.registry.imp.pkg.version>[1.0.1, 2.0.0)</carbon.kernel.registry.imp.pkg.version>
+        <carbon.identity.framework.version>5.7.0</carbon.identity.framework.version>
+        <identity.event.handler.notification.handler.version>1.0.0</identity.event.handler.notification.handler.version>
+        <maven.compiler.plugin.version>2.3.1</maven.compiler.plugin.version>
+        <maven.scr.plugin.version>1.22.0</maven.scr.plugin.version>
+        <maven.bundle.plugin.version>2.4.0</maven.bundle.plugin.version>
+        <maven-surefire.plugin.version>2.19.1</maven-surefire.plugin.version>
+        <org.apache.felix.scr.ds.annotations.version>1.2.4</org.apache.felix.scr.ds.annotations.version>
+        <commons.logging.imp.pkg.version.range>[1.2,2.0)</commons.logging.imp.pkg.version.range>
+        <commons-lang.wso2.osgi.version.range>[2.6.0,3.0.0)</commons-lang.wso2.osgi.version.range>
+        <carbon.identity.framework.imp.pkg.version.range>[5.7.0, 6.0.0)</carbon.identity.framework.imp.pkg.version.range>
+        <carbon.user.api.imp.pkg.version.range>[1.0.1, 2.0.0)</carbon.user.api.imp.pkg.version.range>
+    </properties>
+</project>
