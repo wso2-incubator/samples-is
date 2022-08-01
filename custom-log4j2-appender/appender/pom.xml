@@ -137,7 +137,7 @@
     </build>
 
     <properties>
-        <org.apache.logging.log4j.api.version>2.11.2</org.apache.logging.log4j.api.version>
+        <org.apache.logging.log4j.api.version>2.16.0</org.apache.logging.log4j.api.version>
         <carbon.identity.framework.version>5.17.5</carbon.identity.framework.version>
         <carbon.identity.framework.imp.pkg.version.range>[5.17.5, 6.0.0)
         </carbon.identity.framework.imp.pkg.version.range>
