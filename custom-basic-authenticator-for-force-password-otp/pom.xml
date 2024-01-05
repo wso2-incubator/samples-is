@@ -37,7 +37,7 @@
         <dependency>
             <groupId>org.wso2.carbon.identity.framework</groupId>
             <artifactId>org.wso2.carbon.identity.application.authentication.framework</artifactId>
-            <version>5.7.5</version>
+            <version>5.20.254</version>
         </dependency>
         <dependency>
             <groupId>org.wso2.carbon.identity.application.auth.basic</groupId>
